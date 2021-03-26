@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
+import {Context} from '../../App';
+
 const Feed = () => {
   const navigation = useNavigation();
+  const context = useContext(Context);
+  console.log({context});
   return (
     <View style={{marginTop: 40}}>
       <Text style={{textAlign: 'center', fontSize: 25}}>Feed Screen</Text>
