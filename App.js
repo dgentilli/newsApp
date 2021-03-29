@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React, {useState} from 'react';
+import {Appearance} from 'react-native';
 import {useColorScheme} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
@@ -32,12 +33,22 @@ const App = () => {
     mockState.newsCategoryPreferences,
   );
   const [isFirstLogin, setIsFirstLogin] = useState(mockState.isFirstLogin);
-  const isDarkMode = useColorScheme() === 'dark';
+  const colorScheme = Appearance.getColorScheme();
   const Tab = createBottomTabNavigator();
+
+  const toggleTheme = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
 
   return (
     <Context.Provider
-      value={{loggedInUser, theme, newsCategoryPreferences, isFirstLogin}}>
+      value={{
+        loggedInUser,
+        theme,
+        newsCategoryPreferences,
+        isFirstLogin,
+        toggleTheme,
+      }}>
       <NavigationContainer>
         <Tab.Navigator initialRouteName="Feed">
           <Tab.Screen name="Feed" component={FeedStack} />
