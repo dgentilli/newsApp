@@ -21,12 +21,14 @@ const TileTitle = styled.Text`
 
 const NewsCategoryTile = ({title, selected}) => {
   const context = useContext(Context);
-  console.log('all NewsCategoryTile context: ', context);
-  //const {newsCategoryPreferences} = context;
+  const {modifyNewsPreferences} = context;
 
   return (
     <View>
       <TileWrapper
+        onPress={() => {
+          modifyNewsPreferences(title);
+        }}
         bgColor={selected ? theme.color.SKY_BLUE : theme.color.LIGHT_GRAY}>
         <TileTitle
           color={

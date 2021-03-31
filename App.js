@@ -39,6 +39,17 @@ const App = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
 
+  const modifyNewsPreferences = category => {
+    //console.log({category});
+    if (newsCategoryPreferences.includes(category)) {
+      setNewsCategoryPreferences([
+        ...newsCategoryPreferences.filter(item => category !== item),
+      ]);
+    } else {
+      setNewsCategoryPreferences([...newsCategoryPreferences, category]);
+    }
+  };
+
   return (
     <Context.Provider
       value={{
@@ -47,6 +58,7 @@ const App = () => {
         newsCategoryPreferences,
         isFirstLogin,
         toggleTheme,
+        modifyNewsPreferences,
       }}>
       <NavigationContainer>
         <Tab.Navigator initialRouteName="Feed">
