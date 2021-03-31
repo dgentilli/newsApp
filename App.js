@@ -6,11 +6,10 @@ import {useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-//import GlobalState from './Context/GlobalState';
 import FeedStack from './src/navigation/FeedStack';
+import MyStuffStack from './src/navigation/MyStuffStack';
 import AdvancedSearch from './src/screens/AdvancedSearch';
 import PopularStories from './src/screens/PopularStories';
-import MyStuff from './src/screens/MyStuff';
 
 export const Context = React.createContext();
 
@@ -54,7 +53,7 @@ const App = () => {
           <Tab.Screen name="Feed" component={FeedStack} />
           <Tab.Screen name="AdvancedSearch" component={AdvancedSearch} />
           <Tab.Screen name="PopularStories" component={PopularStories} />
-          <Tab.Screen name="MyStuff" component={MyStuff} />
+          <Tab.Screen name="MyStuff" component={MyStuffStack} />
         </Tab.Navigator>
       </NavigationContainer>
     </Context.Provider>
