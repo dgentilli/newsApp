@@ -1,0 +1,42 @@
+import React, {useContext} from 'react';
+import {View} from 'react-native';
+import styled from 'styled-components';
+
+import theme from '../../src/theme';
+import {Context} from '../../App';
+
+const TileWrapper = styled.TouchableOpacity`
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: ${props => props.bgColor};
+  justify-content: center;
+  margin-top: 30px;
+`;
+
+const TileTitle = styled.Text`
+  color: ${props => props.color};
+  text-align: center;
+`;
+
+const NewsCategoryTile = ({title, selected}) => {
+  const context = useContext(Context);
+  console.log('all NewsCategoryTile context: ', context);
+  //const {newsCategoryPreferences} = context;
+
+  return (
+    <View>
+      <TileWrapper
+        bgColor={selected ? theme.color.SKY_BLUE : theme.color.LIGHT_GRAY}>
+        <TileTitle
+          color={
+            selected ? theme.color.TEXT_PRIMARY : theme.color.TEXT_SECONDARY
+          }>
+          {title}
+        </TileTitle>
+      </TileWrapper>
+    </View>
+  );
+};
+
+export default NewsCategoryTile;

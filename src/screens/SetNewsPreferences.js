@@ -1,11 +1,17 @@
 import React, {useContext} from 'react';
-import {View, Text} from 'react-native';
-
+import {Text, FlatList} from 'react-native';
+import styled from 'styled-components';
 import {Context} from '../../App';
+import NewsCategoryTile from '../components/NewsCategoryTile';
+
+const Container = styled.SafeAreaView`
+  flex: 1;
+  margin-bottom: 40px;
+`;
 
 const SetNewsPreferences = () => {
   const context = useContext(Context);
-  console.log('all news topics context: ', context);
+  //console.log('all news topics context: ', context);
   const allNewsCategories = [
     'arts',
     'automobiles',
@@ -34,12 +40,30 @@ const SetNewsPreferences = () => {
     'us',
     'world',
   ];
+  const {newsCategoryPreferences} = context;
+  const isSelected = true;
+
   return (
-    <View style={{marginTop: 40}}>
+    <Container>
       <Text style={{textAlign: 'center', fontSize: 25}}>
         SetNewsPreferences Screen
       </Text>
-    </View>
+      <FlatList
+        data={allNewsCategories}
+        keyExtractor={item => item}
+        horizontal={false}
+        numColumns={3}
+        columnWrapperStyle={{justifyContent: 'space-evenly'}}
+        renderItem={({item}) => {
+          return (
+            <NewsCategoryTile
+              title={item}
+              selected={newsCategoryPreferences.includes(item) ? true : false}
+            />
+          );
+        }}
+      />
+    </Container>
   );
 };
 
