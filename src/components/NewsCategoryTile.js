@@ -31,9 +31,7 @@ const NewsCategoryTile = ({title, selected}) => {
         }}
         bgColor={selected ? theme.color.SKY_BLUE : theme.color.LIGHT_GRAY}>
         <TileTitle
-          color={
-            selected ? theme.color.TEXT_PRIMARY : theme.color.TEXT_SECONDARY
-          }>
+          color={selected ? theme.color.TEXT_LIGHT : theme.color.TEXT_DARK}>
           {title}
         </TileTitle>
       </TileWrapper>
