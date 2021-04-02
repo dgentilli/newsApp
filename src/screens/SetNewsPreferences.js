@@ -13,10 +13,13 @@ const SetNewsPreferences = () => {
   const context = useContext(Context);
   //console.log('all news topics context: ', context);
   const allNewsCategories = [
+    'us',
+    'world',
+    'business',
+    'science',
     'arts',
     'automobiles',
     'books',
-    'business',
     'fashion',
     'food',
     'health',
@@ -29,7 +32,6 @@ const SetNewsPreferences = () => {
     'opinion',
     'politics',
     'realestate',
-    'science',
     'sports',
     'sundayreview',
     'technology',
@@ -37,8 +39,6 @@ const SetNewsPreferences = () => {
     't-magazine',
     'travel',
     'upshot',
-    'us',
-    'world',
   ];
   const {newsCategoryPreferences} = context;
   const isSelected = true;
