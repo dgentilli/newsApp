@@ -3,7 +3,6 @@ import {FlatList} from 'react-native';
 import styled from 'styled-components';
 
 import NewsCardHorizontal from './NewsCardHorizontal';
-import NewsScrollHeader from './NewsScrollHeader';
 import {newsFeedMockData} from '../mockData/newsFeedMockData';
 
 const NewsScroll = ({section}) => {
@@ -19,7 +18,6 @@ const NewsScroll = ({section}) => {
       renderItem={({item}) => {
         return <NewsCardHorizontal />;
       }}
-      ListHeaderComponent={<NewsScrollHeader section={section} />}
     />
   );
 };
