@@ -5,7 +5,7 @@ import {Context} from '../../App';
 
 const AllNewsTopics = () => {
   const context = useContext(Context);
-  console.log('all news topics context: ', context);
+  //console.log('all news topics context: ', context);
   return (
     <View style={{marginTop: 40}}>
       <Text style={{textAlign: 'center', fontSize: 25}}>

@@ -5,7 +5,7 @@ import {Context} from '../../App';
 
 const NewsListByCategory = () => {
   const context = useContext(Context);
-  console.log('newsListByCategory context: ', context);
+  //console.log('newsListByCategory context: ', context);
   return (
     <View style={{marginTop: 40}}>
       <Text style={{textAlign: 'center', fontSize: 25}}>
