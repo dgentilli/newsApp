@@ -1,13 +1,15 @@
 import React, {useContext} from 'react';
-import {Text, FlatList} from 'react-native';
-import styled from 'styled-components';
-import {Context} from '../../App';
-import NewsCategoryTile from '../components/NewsCategoryTile';
+import {FlatList} from 'react-native';
 
-const Container = styled.SafeAreaView`
-  flex: 1;
-  margin-bottom: 40px;
-`;
+import {Context} from '../../App';
+import {
+  Container,
+  Spacer,
+  PrimaryHeading,
+  SecondaryHeading,
+} from '../components/reusable/Main';
+
+import NewsCategoryTile from '../components/NewsCategoryTile';
 
 const SetNewsPreferences = () => {
   const context = useContext(Context);
@@ -40,14 +42,17 @@ const SetNewsPreferences = () => {
     'travel',
     'upshot',
   ];
-  const {newsCategoryPreferences} = context;
+  const {newsCategoryPreferences, theme} = context;
   const isSelected = true;
 
   return (
-    <Container>
-      <Text style={{textAlign: 'center', fontSize: 25}}>
-        SetNewsPreferences Screen
-      </Text>
+    <Container theme={theme}>
+      <Spacer height={20} />
+      <PrimaryHeading theme={theme}>Personalize Your News Feed</PrimaryHeading>
+      <Spacer height={5} />
+      <SecondaryHeading theme={theme}>
+        Click to Select/De-select
+      </SecondaryHeading>
       <FlatList
         data={allNewsCategories}
         keyExtractor={item => item}
@@ -63,6 +68,7 @@ const SetNewsPreferences = () => {
           );
         }}
       />
+      <Spacer height={20} />
     </Container>
   );
 };
