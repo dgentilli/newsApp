@@ -25,3 +25,19 @@ export const SecondaryHeading = styled.Text`
   font-size: 16px;
   text-align: center;
 `;
+
+export const Button = styled.TouchableOpacity`
+    width: 70%;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 4px;
+    background color: ${theme.color.SKY_BLUE};
+    display: flex;
+    justify-content: center;
+`;
+
+export const ButtonText = styled.Text`
+  color: ${theme.color.TEXT_LIGHT};
+  font-size: 16px;
+  text-align: center;
+`;
