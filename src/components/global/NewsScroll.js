@@ -3,7 +3,7 @@ import {FlatList} from 'react-native';
 import styled from 'styled-components';
 
 import NewsCardHorizontal from './NewsCardHorizontal';
-import {newsFeedMockData} from '../mockData/newsFeedMockData';
+import {newsFeedMockData} from '../../mockData/newsFeedMockData';
 
 const NewsScroll = ({section}) => {
   /** Here is how the API CALL will work

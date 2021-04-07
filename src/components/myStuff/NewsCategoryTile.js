@@ -2,8 +2,8 @@ import React, {useContext} from 'react';
 import {View} from 'react-native';
 import styled from 'styled-components';
 
-import theme from '../../src/theme';
-import {Context} from '../../App';
+import theme from '../../theme';
+import {Context} from '../../../App';
 
 const TileWrapper = styled.TouchableOpacity`
   width: 100px;

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import theme from '../theme';
 import {Context} from '../../App';
-import {Container, Spacer, PrimaryHeading} from '../components/reusable/Main';
+import {Container, Spacer, PrimaryHeading} from '../components/global/Main';
 
 const Row = styled.View`
   display: flex;

@@ -2,9 +2,9 @@ import React, {useContext} from 'react';
 import {Dimensions, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 
-import theme from '../theme';
-import {Context} from '../../App';
-import {Container, Spacer, PrimaryHeading} from '../components/reusable/Main';
+import theme from '../../theme';
+import {Context} from '../../../App';
+import {Container, Spacer, PrimaryHeading} from './Main';
 
 const {width} = Dimensions.get('window');
 

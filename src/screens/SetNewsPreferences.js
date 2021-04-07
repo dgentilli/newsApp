@@ -7,9 +7,9 @@ import {
   Spacer,
   PrimaryHeading,
   SecondaryHeading,
-} from '../components/reusable/Main';
+} from '../components/global/Main';
 
-import NewsCategoryTile from '../components/NewsCategoryTile';
+import NewsCategoryTile from '../components/myStuff/NewsCategoryTile';
 
 const SetNewsPreferences = () => {
   const context = useContext(Context);

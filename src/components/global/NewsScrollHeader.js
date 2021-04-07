@@ -1,15 +1,15 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components';
 
-import theme from '../theme';
-import {Context} from '../../App';
+import theme from '../../theme';
+import {Context} from '../../../App';
 
 const SectionHeader = styled.Text`
   color: ${props =>
     props.theme === 'dark' ? theme.color.TEXT_LIGHT : theme.color.TEXT_DARK};
   font-size: 18px;
   text-align: left;
-  text-transform: capitalize;
+  text-transform: uppercase;
   margin: 0 5px;
   width: auto;
   padding: 7px;

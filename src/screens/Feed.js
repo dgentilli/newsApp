@@ -3,9 +3,9 @@ import {TouchableOpacity, SectionList, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {Context} from '../../App';
-import {Container, Spacer, PrimaryHeading} from '../components/reusable/Main';
-import NewsScroll from '../components/NewsScroll';
-import NewsScrollHeader from '../components/NewsScrollHeader';
+import {Container, Spacer, PrimaryHeading} from '../components/global/Main';
+import NewsScroll from '../components/global/NewsScroll';
+import NewsScrollHeader from '../components/global/NewsScrollHeader';
 
 const Feed = () => {
   const navigation = useNavigation();
@@ -21,8 +21,6 @@ const Feed = () => {
 
   return (
     <Container theme={theme}>
-      <PrimaryHeading theme={theme}>Feed Screen</PrimaryHeading>
-      <Spacer height={30} />
       <SectionList
         sections={newsData}
         keyExtractor={item => item}
@@ -30,8 +28,10 @@ const Feed = () => {
         renderSectionHeader={({section: {title}}) => (
           <NewsScrollHeader title={title} />
         )}
+        //stickySectionHeadersEnabled={false}
+        //ListHeaderComponent
       />
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={{
           height: 50,
           width: 250,
@@ -46,7 +46,7 @@ const Feed = () => {
         }}
         onPress={() => navigation.navigate('NewsListByCategory')}>
         <PrimaryHeading theme={theme}>News List By Category</PrimaryHeading>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </Container>
   );
 };
