@@ -13,10 +13,10 @@ const NewsScroll = ({section}) => {
     <FlatList
       horizontal
       showsHorizontalScrollIndicator={false}
-      data={newsFeedMockData}
+      data={newsFeedMockData.slice(0, 10)}
       keyExtractor={item => item}
       renderItem={({item}) => {
-        return <NewsCardHorizontal />;
+        return <NewsCardHorizontal data={item} />;
       }}
     />
   );
