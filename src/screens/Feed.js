@@ -3,7 +3,14 @@ import {TouchableOpacity, SectionList, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {Context} from '../../App';
-import {Container, Spacer, PrimaryHeading} from '../components/global/Main';
+import {
+  Container,
+  Button,
+  ButtonText,
+  Spacer,
+  PrimaryHeading,
+} from '../components/global/Main';
+import Welcome from '../components/feed/Welcome';
 import NewsScroll from '../components/global/NewsScroll';
 import NewsScrollHeader from '../components/global/NewsScrollHeader';
 
@@ -28,25 +35,18 @@ const Feed = () => {
         renderSectionHeader={({section: {title}}) => (
           <NewsScrollHeader title={title} />
         )}
-        //stickySectionHeadersEnabled={false}
-        //ListHeaderComponent
+        stickySectionHeadersEnabled={false}
+        ListHeaderComponent={<Welcome />}
+        ListFooterComponent={
+          <>
+            <Spacer height={10} />
+            <Button onPress={() => navigation.navigate('AllNewsTopics')}>
+              <ButtonText>See All Topics</ButtonText>
+            </Button>
+            <Spacer height={30} />
+          </>
+        }
       />
-      {/* <TouchableOpacity
-        style={{
-          height: 50,
-          width: 250,
-        }}
-        onPress={() => navigation.navigate('AllNewsTopics')}>
-        <PrimaryHeading theme={theme}>All News Topics</PrimaryHeading>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{
-          height: 50,
-          width: 250,
-        }}
-        onPress={() => navigation.navigate('NewsListByCategory')}>
-        <PrimaryHeading theme={theme}>News List By Category</PrimaryHeading>
-      </TouchableOpacity> */}
     </Container>
   );
 };
