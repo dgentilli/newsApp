@@ -1,17 +1,38 @@
 import React, {useContext} from 'react';
-import {View, Text} from 'react-native';
+import {FlatList} from 'react-native';
+import styled from 'styled-components';
 
 import {Context} from '../../App';
+import {
+  Container,
+  Button,
+  ButtonText,
+  Spacer,
+  PrimaryHeading,
+} from '../components/global/Main';
+import NewsCardVertical from '../components/global/NewsCardVertical';
+import {newsFeedMockData} from '../mockData/newsFeedMockData';
 
-const NewsListByCategory = () => {
+const NewsListByCategory = ({route}) => {
   const context = useContext(Context);
+  const {theme} = context;
+  const {params} = route;
   //console.log('newsListByCategory context: ', context);
   return (
-    <View style={{marginTop: 40}}>
-      <Text style={{textAlign: 'center', fontSize: 25}}>
-        NewsListByCategory Screen
-      </Text>
-    </View>
+    <Container theme={theme}>
+      <Spacer height={20} />
+      <PrimaryHeading theme={theme}>
+        Latest News in {params.section}
+      </PrimaryHeading>
+      <Spacer height={20} />
+      <FlatList
+        data={newsFeedMockData}
+        keyExtractor={item => item}
+        renderItem={({item}) => {
+          return <NewsCardVertical data={item} />;
+        }}
+      />
+    </Container>
   );
 };
 
