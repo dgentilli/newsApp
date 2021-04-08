@@ -50,3 +50,32 @@ export const HorizontalCardContainer = styled.TouchableOpacity`
   border-width: 1px;
   border-color: ${theme.color.LIGHT_GRAY};
 `;
+
+export const allNewsCategories = [
+  'us',
+  'world',
+  'business',
+  'science',
+  'arts',
+  'automobiles',
+  'books',
+  'fashion',
+  'food',
+  'health',
+  'home',
+  'insider',
+  'magazine',
+  'movies',
+  'nyregion',
+  'obituaries',
+  'opinion',
+  'politics',
+  'realestate',
+  'sports',
+  'sundayreview',
+  'technology',
+  'theater',
+  't-magazine',
+  'travel',
+  'upshot',
+];

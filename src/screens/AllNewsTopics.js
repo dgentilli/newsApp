@@ -9,40 +9,14 @@ import {
   ButtonText,
   Spacer,
   PrimaryHeading,
+  allNewsCategories,
 } from '../components/global/Main';
 
 const AllNewsTopics = () => {
   const navigation = useNavigation();
   const context = useContext(Context);
   const {theme} = context;
-  const allNewsCategories = [
-    'us',
-    'world',
-    'business',
-    'science',
-    'arts',
-    'automobiles',
-    'books',
-    'fashion',
-    'food',
-    'health',
-    'home',
-    'insider',
-    'magazine',
-    'movies',
-    'nyregion',
-    'obituaries',
-    'opinion',
-    'politics',
-    'realestate',
-    'sports',
-    'sundayreview',
-    'technology',
-    'theater',
-    't-magazine',
-    'travel',
-    'upshot',
-  ];
+
   //console.log('all news topics context: ', context);
   return (
     <Container theme={theme}>

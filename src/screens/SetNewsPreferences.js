@@ -7,6 +7,7 @@ import {
   Spacer,
   PrimaryHeading,
   SecondaryHeading,
+  allNewsCategories,
 } from '../components/global/Main';
 
 import NewsCategoryTile from '../components/myStuff/NewsCategoryTile';
@@ -14,34 +15,6 @@ import NewsCategoryTile from '../components/myStuff/NewsCategoryTile';
 const SetNewsPreferences = () => {
   const context = useContext(Context);
   //console.log('all news topics context: ', context);
-  const allNewsCategories = [
-    'us',
-    'world',
-    'business',
-    'science',
-    'arts',
-    'automobiles',
-    'books',
-    'fashion',
-    'food',
-    'health',
-    'home',
-    'insider',
-    'magazine',
-    'movies',
-    'nyregion',
-    'obituaries',
-    'opinion',
-    'politics',
-    'realestate',
-    'sports',
-    'sundayreview',
-    'technology',
-    'theater',
-    't-magazine',
-    'travel',
-    'upshot',
-  ];
   const {newsCategoryPreferences, theme} = context;
   const isSelected = true;
 
