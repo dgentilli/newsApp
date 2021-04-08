@@ -7,6 +7,7 @@ import {Container, Button, ButtonText, Spacer} from '../components/global/Main';
 import Welcome from '../components/feed/Welcome';
 import NewsScroll from '../components/global/NewsScroll';
 import NewsScrollHeader from '../components/global/NewsScrollHeader';
+import {newsFeedMockData} from '../mockData/newsFeedMockData';
 
 const PopularStories = () => {
   const context = useContext(Context);
@@ -17,7 +18,7 @@ const PopularStories = () => {
 
   const newsData = popularCategories.map(item => ({
     title: item,
-    data: [''],
+    data: [newsFeedMockData],
   }));
 
   return (
@@ -26,7 +27,7 @@ const PopularStories = () => {
         sections={newsData}
         keyExtractor={item => item}
         renderItem={({item}) => (
-          <NewsScroll section={item} isPopularStories={true} />
+          <NewsScroll data={item} isPopularStories={true} />
         )}
         renderSectionHeader={({section: {title}}) => (
           <NewsScrollHeader title={title} />

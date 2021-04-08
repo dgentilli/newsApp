@@ -4,15 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import theme from '../../theme';
 import {Context} from '../../../App';
-
-const HorizontalCardContainer = styled.TouchableOpacity`
-  width: 210px;
-  height: 250px;
-  margin: 7px 5px;
-  border-radius: 4px;
-  border-width: 1px;
-  border-color: ${theme.color.LIGHT_GRAY};
-`;
+import {HorizontalCardContainer} from '../global/Main';
 
 const Image = styled.Image`
   height: 50%;

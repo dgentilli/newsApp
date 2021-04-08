@@ -1,23 +1,20 @@
 import React, {useContext} from 'react';
 import {FlatList} from 'react-native';
-import styled from 'styled-components';
 
 import NewsCardHorizontal from './NewsCardHorizontal';
-import {newsFeedMockData} from '../../mockData/newsFeedMockData';
+import SeeMore from '../feed/SeeMore';
 
-const NewsScroll = ({section}) => {
-  /** Here is how the API CALL will work
-   * `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${env.API_KEY}`
-   */
+const NewsScroll = ({data}) => {
   return (
     <FlatList
       horizontal
       showsHorizontalScrollIndicator={false}
-      data={newsFeedMockData.slice(0, 10)}
+      data={data.slice(0, 10)}
       keyExtractor={item => item}
       renderItem={({item}) => {
         return <NewsCardHorizontal data={item} />;
       }}
+      ListFooterComponent={<SeeMore section={data[0].section} />}
     />
   );
 };

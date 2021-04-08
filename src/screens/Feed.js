@@ -7,6 +7,7 @@ import {Container, Button, ButtonText, Spacer} from '../components/global/Main';
 import Welcome from '../components/feed/Welcome';
 import NewsScroll from '../components/global/NewsScroll';
 import NewsScrollHeader from '../components/global/NewsScrollHeader';
+import {newsFeedMockData} from '../mockData/newsFeedMockData';
 
 const Feed = () => {
   const navigation = useNavigation();
@@ -17,7 +18,7 @@ const Feed = () => {
 
   const newsData = newsCategoryPreferences.map(item => ({
     title: item,
-    data: [''],
+    data: [newsFeedMockData],
   }));
 
   return (
@@ -25,7 +26,7 @@ const Feed = () => {
       <SectionList
         sections={newsData}
         keyExtractor={item => item}
-        renderItem={({item}) => <NewsScroll section={item} />}
+        renderItem={({item}) => <NewsScroll data={item} />}
         renderSectionHeader={({section: {title}}) => (
           <NewsScrollHeader title={title} />
         )}
