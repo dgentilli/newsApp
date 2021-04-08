@@ -17,6 +17,7 @@ export const PrimaryHeading = styled.Text`
     props.theme === 'dark' ? theme.color.TEXT_LIGHT : theme.color.TEXT_DARK};
   font-size: 22px;
   text-align: center;
+  text-transform: capitalize;
 `;
 
 export const SecondaryHeading = styled.Text`
