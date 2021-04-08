@@ -1,15 +1,9 @@
 import React, {useContext} from 'react';
-import {TouchableOpacity, SectionList, Text} from 'react-native';
+import {SectionList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {Context} from '../../App';
-import {
-  Container,
-  Button,
-  ButtonText,
-  Spacer,
-  PrimaryHeading,
-} from '../components/global/Main';
+import {Container, Button, ButtonText, Spacer} from '../components/global/Main';
 import Welcome from '../components/feed/Welcome';
 import NewsScroll from '../components/global/NewsScroll';
 import NewsScrollHeader from '../components/global/NewsScrollHeader';
