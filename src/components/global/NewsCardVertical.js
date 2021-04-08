@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import theme from '../../theme';
 import {Context} from '../../../App';
-import {Container, Spacer, PrimaryHeading} from '../components/global/Main';
+import {Title, Abstract} from './Main';
 
 const CardVerticalContainer = styled.TouchableOpacity`
   width: 98%;
@@ -27,28 +27,11 @@ const Image = styled.Image`
   border-radius: 4px;
 `;
 
-const Title = styled.Text`
-  font-size: 14px;
-  font-weight: 500;
-  color: ${props =>
-    props.theme === 'dark' ? theme.color.TEXT_LIGHT : theme.color.TEXT_DARK};
-  padding: 5px 10px;
-`;
-
-const Abstract = styled.Text`
-  font-size: 12px;
-  font-weight: 300;
-  color: ${props =>
-    props.theme === 'dark' ? theme.color.TEXT_LIGHT : theme.color.TEXT_DARK};
-  padding: 0 10px 5px;
-  line-height: 18px;
-`;
-
 const NewsCardVertical = ({data}) => {
   const navigation = useNavigation();
   const context = useContext(Context);
   const {theme} = context;
-  const {title, abstract, url, multimedia, byline, updated_date} = data;
+  const {title, abstract, url, multimedia, byline} = data;
   const imageUrl = multimedia[2].url;
   const titleDisplay =
     title.length > 55 ? `${title.substring(0, 55)}...` : title;

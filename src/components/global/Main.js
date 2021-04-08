@@ -52,6 +52,23 @@ export const HorizontalCardContainer = styled.TouchableOpacity`
   border-color: ${theme.color.LIGHT_GRAY};
 `;
 
+export const Title = styled.Text`
+  font-size: 14px;
+  font-weight: 500;
+  color: ${props =>
+    props.theme === 'dark' ? theme.color.TEXT_LIGHT : theme.color.TEXT_DARK};
+  padding: 5px 10px;
+`;
+
+export const Abstract = styled.Text`
+  font-size: 12px;
+  font-weight: 300;
+  color: ${props =>
+    props.theme === 'dark' ? theme.color.TEXT_LIGHT : theme.color.TEXT_DARK};
+  padding: 0 10px 5px;
+  line-height: 18px;
+`;
+
 export const allNewsCategories = [
   'us',
   'world',
