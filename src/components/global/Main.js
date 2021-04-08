@@ -41,3 +41,12 @@ export const ButtonText = styled.Text`
   font-size: 16px;
   text-align: center;
 `;
+
+export const HorizontalCardContainer = styled.TouchableOpacity`
+  width: 210px;
+  height: 250px;
+  margin: 7px 5px;
+  border-radius: 4px;
+  border-width: 1px;
+  border-color: ${theme.color.LIGHT_GRAY};
+`;
