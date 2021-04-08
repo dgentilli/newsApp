@@ -28,7 +28,7 @@ const SeeMore = ({section}) => {
 
   return (
     <HorizontalCardContainer
-      onPress={() => navigation.navigate('NewsListByCategory')}>
+      onPress={() => navigation.navigate('NewsListByCategory', {section})}>
       <GenericTextContainer>
         <SeeMoreText theme={theme}>See More</SeeMoreText>
         <SeeMoreText theme={theme}>From {section}</SeeMoreText>
