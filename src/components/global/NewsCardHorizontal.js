@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components';
+import {useNavigation} from '@react-navigation/native';
 
 import theme from '../../theme';
 import {Context} from '../../../App';
@@ -39,6 +40,7 @@ const Abstract = styled.Text`
 const NewsCardHorizontal = ({data}) => {
   //console.log({data});
   const context = useContext(Context);
+  const navigation = useNavigation();
   const {theme} = context;
   const {title, abstract, url, multimedia, updated_date} = data;
   const imageUrl = multimedia[3].url;
@@ -48,7 +50,8 @@ const NewsCardHorizontal = ({data}) => {
     abstract.length > 95 ? `${abstract.slice(0, 95)}...` : abstract;
 
   return (
-    <HorizontalCardContainer>
+    <HorizontalCardContainer
+      onPress={() => navigation.navigate('ArticleView', {url})}>
       <Image
         resizeMode="cover"
         source={{
