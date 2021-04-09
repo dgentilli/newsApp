@@ -7,6 +7,7 @@ import {Container, Button, ButtonText, Spacer} from '../components/global/Main';
 import Welcome from '../components/feed/Welcome';
 import NewsScroll from '../components/global/NewsScroll';
 import NewsScrollHeader from '../components/global/NewsScrollHeader';
+import ApiLogo from '../components/global/ApiLogo';
 import {newsFeedMockData} from '../mockData/newsFeedMockData';
 
 const PopularStories = () => {
@@ -40,7 +41,8 @@ const PopularStories = () => {
             <Button onPress={() => navigation.navigate('AllNewsTopics')}>
               <ButtonText>See All Topics</ButtonText>
             </Button>
-            <Spacer height={30} />
+            <Spacer height={20} />
+            <ApiLogo />
           </>
         }
       />

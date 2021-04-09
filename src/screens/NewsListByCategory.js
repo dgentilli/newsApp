@@ -11,6 +11,7 @@ import {
   PrimaryHeading,
 } from '../components/global/Main';
 import NewsCardVertical from '../components/global/NewsCardVertical';
+import ApiLogo from '../components/global/ApiLogo';
 import {newsFeedMockData} from '../mockData/newsFeedMockData';
 
 const NewsListByCategory = ({route}) => {
@@ -31,6 +32,12 @@ const NewsListByCategory = ({route}) => {
         renderItem={({item}) => {
           return <NewsCardVertical data={item} />;
         }}
+        ListFooterComponent={
+          <>
+            <Spacer height={20} />
+            <ApiLogo />
+          </>
+        }
       />
     </Container>
   );
