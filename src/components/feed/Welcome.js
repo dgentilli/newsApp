@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 
 import {Context} from '../../../App';
-import {PrimaryHeading, Spacer} from '../global/Main';
+import {PrimaryHeading, SecondaryHeading, Spacer} from '../global/Main';
 
 const Welcome = () => {
   const context = useContext(Context);
@@ -16,6 +16,7 @@ const Welcome = () => {
     <>
       <Spacer height={10} />
       <PrimaryHeading theme={theme}>Welcome!</PrimaryHeading>
+      <SecondaryHeading>You're using Dave's News App</SecondaryHeading>
       <Spacer height={10} />
     </>
   );
