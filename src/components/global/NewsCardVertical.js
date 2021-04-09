@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
+import {Linking} from 'react-native';
 import styled from 'styled-components';
-import {useNavigation} from '@react-navigation/native';
 
 import theme from '../../theme';
 import {Context} from '../../../App';
@@ -28,7 +28,6 @@ const Image = styled.Image`
 `;
 
 const NewsCardVertical = ({data}) => {
-  const navigation = useNavigation();
   const context = useContext(Context);
   const {theme} = context;
   const {title, abstract, url, multimedia, byline} = data;
@@ -39,8 +38,7 @@ const NewsCardVertical = ({data}) => {
     abstract.length > 105 ? `${abstract.slice(0, 105)}...` : abstract;
 
   return (
-    <CardVerticalContainer
-      onPress={() => navigation.navigate('ArticleView', {url})}>
+    <CardVerticalContainer onPress={() => Linking.openURL(url)}>
       <Image
         resizeMode="cover"
         source={{

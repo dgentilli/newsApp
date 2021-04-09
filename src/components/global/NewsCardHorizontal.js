@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
+import {Linking} from 'react-native';
 import styled from 'styled-components';
-import {useNavigation} from '@react-navigation/native';
 
 import {Context} from '../../../App';
 import {HorizontalCardContainer, Title, Abstract} from './Main';
@@ -14,7 +14,6 @@ const Image = styled.Image`
 const NewsCardHorizontal = ({data}) => {
   //console.log({data});
   const context = useContext(Context);
-  const navigation = useNavigation();
   const {theme} = context;
   const {title, abstract, url, multimedia} = data;
   const imageUrl = multimedia[3].url;
@@ -24,8 +23,7 @@ const NewsCardHorizontal = ({data}) => {
     abstract.length > 95 ? `${abstract.slice(0, 95)}...` : abstract;
 
   return (
-    <HorizontalCardContainer
-      onPress={() => navigation.navigate('ArticleView', {url})}>
+    <HorizontalCardContainer onPress={() => Linking.openURL(url)}>
       <Image
         resizeMode="cover"
         source={{
