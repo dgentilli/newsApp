@@ -8,7 +8,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import FeedStack from './src/navigation/FeedStack';
 import MyStuffStack from './src/navigation/MyStuffStack';
-import AdvancedSearch from './src/screens/AdvancedSearch';
+import SearchStack from './src/navigation/SearchStack';
 import PopuarStoriesStack from './src/navigation/PopularStoriesStack';
 
 export const Context = React.createContext();
@@ -63,7 +63,7 @@ const App = () => {
       <NavigationContainer>
         <Tab.Navigator initialRouteName="Feed">
           <Tab.Screen name="Feed" component={FeedStack} />
-          <Tab.Screen name="AdvancedSearch" component={AdvancedSearch} />
+          <Tab.Screen name="AdvancedSearch" component={SearchStack} />
           <Tab.Screen name="PopularStories" component={PopuarStoriesStack} />
           <Tab.Screen name="MyStuff" component={MyStuffStack} />
         </Tab.Navigator>
