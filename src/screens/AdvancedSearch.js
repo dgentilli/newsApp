@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {View, Text} from 'react-native';
+const axios = require('axios');
 import styled from 'styled-components';
 
 import {Context} from '../../App';
@@ -9,13 +9,16 @@ import {
   ButtonText,
   Spacer,
   SecondaryHeading,
+  PrimaryHeading,
 } from '../components/global/Main';
 import theme from '../theme';
+
+import {NYT_API_KEY} from '@env';
 
 const Row = styled.View`
   display: flex;
   width: 100%;
-  height: 110px;
+  height: 80px;
   justify-content: center;
   align-items: center;
 `;
@@ -41,45 +44,142 @@ const SearchInput = styled.TextInput`
 const FilterContainer = styled.View`
   width: 100%
   flex: 1;
-  border-width: 1px;
-  border-color: red;
 `;
 
 const AdvancedSearch = () => {
   const context = useContext(Context);
   const {theme} = context;
+  const [articleArray, setArticleArray] = useState([]);
+  const [error, setError] = useState(false);
   const [queryValue, setQueryValue] = useState('');
   const [filterValue, setFilterValue] = useState('');
-  //console.log('AdvancedSearch context: ', context);
-  console.log({queryValue, filterValue});
+  const [pubYear, setPubYear] = useState(null);
+  const [location, setLocation] = useState('');
+  const [source, setSource] = useState('');
+  const [headline, setHeadline] = useState('');
+  const [newsDesk, setNewsDesk] = useState('');
+  const [section, setSection] = useState('');
+
+  const handleSubmit = async () => {
+    let filterString = `pub_year:(${pubYear}) AND location:(${location}) AND source:(${source}) 
+    AND headline:(${headline}) AND news_desk:(${newsDesk}) AND section:(${section})`;
+
+    setFilterValue(filterString);
+    let root = `https://api.nytimes.com/svc/search/v2`;
+    let response = await axios.get(
+      `${root}/articlesearch.json?q=${queryValue}&api-key=${NYT_API_KEY}&fq=${filterValue}`,
+    );
+
+    if (response.status != 200 || !response.data) {
+      setError(true);
+    } else {
+      setArticleArray(response.data.response.docs);
+    }
+
+    console.log('response.status', response.status);
+    clearValues();
+  };
+
+  const clearValues = () => {
+    setQueryValue('');
+    setFilterValue('');
+    setPubYear(null);
+    setLocation('');
+    setSource('');
+    setHeadline('');
+    setNewsDesk('');
+    setSection('');
+    setError(false);
+    setArticleArray([]);
+  };
+
   return (
     <Container theme={theme}>
-      <Spacer height={20} />
+      <Spacer height={10} />
+      <PrimaryHeading theme={theme}>Enter Your Search Terms</PrimaryHeading>
+      <Spacer height={10} />
       <SearchInput
-        height={50}
+        height={40}
         theme={theme}
         placeholder="Enter Search Terms"
         value={queryValue}
         onChangeText={input => setQueryValue(input)}
       />
-      <Spacer height={10} />
+      <Spacer height={20} />
       <FilterContainer>
         <Spacer height={5} />
-        <SecondaryHeading>Filter Your Search</SecondaryHeading>
+        <SecondaryHeading theme={theme}>Filter Your Search</SecondaryHeading>
+        <Spacer height={10} />
         <Row>
-          <RowTitle>Publication Year</RowTitle>
+          <RowTitle theme={theme}>Publication Year</RowTitle>
+          <Spacer height={5} />
           <SearchInput
             height={30}
             theme={theme}
             placeholder="Publication Year"
-            value={filterValue}
-            onChangeText={input => setFilterValue(input)}
+            value={pubYear}
+            onChangeText={input => setPubYear(input)}
             keyboardType="numeric"
+          />
+        </Row>
+        <Row>
+          <RowTitle theme={theme}>Location (Ex: New York City)</RowTitle>
+          <Spacer height={5} />
+          <SearchInput
+            height={30}
+            theme={theme}
+            placeholder="Location"
+            value={location}
+            onChangeText={input => setLocation(input)}
+          />
+        </Row>
+        <Row>
+          <RowTitle theme={theme}>Source (Ex: Reuters)</RowTitle>
+          <Spacer height={5} />
+          <SearchInput
+            height={30}
+            theme={theme}
+            placeholder="Source"
+            value={source}
+            onChangeText={input => setSource(input)}
+          />
+        </Row>
+        <Row>
+          <RowTitle theme={theme}>Headline</RowTitle>
+          <Spacer height={5} />
+          <SearchInput
+            height={30}
+            theme={theme}
+            placeholder="Headline"
+            value={headline}
+            onChangeText={input => setHeadline(input)}
+          />
+        </Row>
+        <Row>
+          <RowTitle theme={theme}>News Desk</RowTitle>
+          <Spacer height={5} />
+          <SearchInput
+            height={30}
+            theme={theme}
+            placeholder="News Desk"
+            value={newsDesk}
+            onChangeText={input => setNewsDesk(input)}
+          />
+        </Row>
+        <Row>
+          <RowTitle theme={theme}>Section</RowTitle>
+          <Spacer height={5} />
+          <SearchInput
+            height={30}
+            theme={theme}
+            placeholder="Headline"
+            value={section}
+            onChangeText={input => setSection(input)}
           />
         </Row>
       </FilterContainer>
       <Spacer height={10} />
-      <Button>
+      <Button onPress={handleSubmit}>
         <ButtonText>Search</ButtonText>
       </Button>
       <Spacer height={20} />
