@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {Alert, Dimensions, ScrollView} from 'react-native';
+import {Alert, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 const axios = require('axios');
 import styled from 'styled-components';
@@ -51,7 +51,6 @@ const FilterContainer = styled.View`
 const AdvancedSearch = () => {
   const context = useContext(Context);
   const {theme} = context;
-  const [error, setError] = useState(false);
   const [queryValue, setQueryValue] = useState('');
   const [filterValue, setFilterValue] = useState('');
   const [pubYear, setPubYear] = useState(null);
@@ -62,8 +61,6 @@ const AdvancedSearch = () => {
   const [section, setSection] = useState('');
 
   const navigation = useNavigation();
-
-  //console.log({error});
 
   const handleSubmit = async () => {
     if (queryValue.length < 1) {
@@ -79,9 +76,7 @@ const AdvancedSearch = () => {
       let response = await axios.get(
         `${root}/articlesearch.json?q=${queryValue}&api-key=${NYT_API_KEY}&fq=${filterValue}`,
       );
-      if (!response || response.status != 200) {
-        setError(true);
-      }
+
       let articleData =
         response &&
         response.status === 200 &&
@@ -107,7 +102,6 @@ const AdvancedSearch = () => {
     setHeadline('');
     setNewsDesk('');
     setSection('');
-    setError(false);
   };
 
   return (
