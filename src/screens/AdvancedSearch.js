@@ -14,7 +14,6 @@ import {
   PrimaryHeading,
 } from '../components/global/Main';
 import theme from '../theme';
-const {height} = Dimensions.get('window');
 
 import {NYT_API_KEY} from '@env';
 
@@ -52,7 +51,6 @@ const FilterContainer = styled.View`
 const AdvancedSearch = () => {
   const context = useContext(Context);
   const {theme} = context;
-  const [articleArray, setArticleArray] = useState([]);
   const [error, setError] = useState(false);
   const [queryValue, setQueryValue] = useState('');
   const [filterValue, setFilterValue] = useState('');
@@ -65,24 +63,35 @@ const AdvancedSearch = () => {
 
   const navigation = useNavigation();
 
+  //console.log({error});
+
   const handleSubmit = async () => {
-    let filterString = `pub_year:(${pubYear}) AND location:(${location}) AND source:(${source}) 
-    AND headline:(${headline}) AND news_desk:(${newsDesk}) AND section:(${section})`;
+    try {
+      let filterString = `pub_year:(${pubYear}) AND location:(${location}) AND source:(${source}) 
+      AND headline:(${headline}) AND news_desk:(${newsDesk}) AND section:(${section})`;
 
-    setFilterValue(filterString);
-    let root = `https://api.nytimes.com/svc/search/v2`;
-    let response = await axios.get(
-      `${root}/articlesearch.json?q=${queryValue}&api-key=${NYT_API_KEY}&fq=${filterValue}`,
-    );
+      setFilterValue(filterString);
+      let root = `https://api.nytimes.com/svc/search/v2`;
+      let response = await axios.get(
+        `${root}/articlesearch.json?q=${queryValue}&api-key=${NYT_API_KEY}&fq=${filterValue}`,
+      );
+      if (!response || response.status != 200) {
+        setError(true);
+      }
+      let articleData =
+        response &&
+        response.status === 200 &&
+        response.data &&
+        (await response.data.response.docs);
 
-    if (response.status != 200 || !response.data) {
-      setError(true);
-    } else {
-      setArticleArray(response.data.response.docs);
+      //console.log('response.data.response.docs', response.data.response.docs);
+      clearValues();
+      navigation.navigate('SearchDisplay', {
+        articles: [...articleData],
+      });
+    } catch (err) {
+      console.log({err});
     }
-    //console.log('response.status', response.status);
-    clearValues();
-    navigation.navigate('SearchDisplay', {articles: articleArray});
   };
 
   const clearValues = () => {
