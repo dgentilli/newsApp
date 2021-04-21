@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {Dimensions, ScrollView} from 'react-native';
+import {Alert, Dimensions, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 const axios = require('axios');
 import styled from 'styled-components';
@@ -66,6 +66,10 @@ const AdvancedSearch = () => {
   //console.log({error});
 
   const handleSubmit = async () => {
+    if (queryValue.length < 1) {
+      Alert.alert('Please enter a search term');
+      return;
+    }
     try {
       let filterString = `pub_year:(${pubYear}) AND location:(${location}) AND source:(${source}) 
       AND headline:(${headline}) AND news_desk:(${newsDesk}) AND section:(${section})`;
