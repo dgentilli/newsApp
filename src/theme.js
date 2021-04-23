@@ -6,6 +6,7 @@ const theme = {
     TEXT_LIGHT: '#f8f9faff',
     SKY_BLUE: '#4cc9f0ff',
     LIGHT_GRAY: '#ced4daff',
+    PINK: '#f72585ff',
   },
 };
 
