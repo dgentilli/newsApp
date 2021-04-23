@@ -19,7 +19,7 @@ const Feed = () => {
 
   const newsData = newsCategoryPreferences.map(item => ({
     title: item,
-    data: [newsFeedMockData],
+    data: [`${item}`],
   }));
 
   return (
@@ -27,7 +27,7 @@ const Feed = () => {
       <SectionList
         sections={newsData}
         keyExtractor={item => item}
-        renderItem={({item}) => <NewsScroll data={item} />}
+        renderItem={({item}) => <NewsScroll title={item} />}
         renderSectionHeader={({section: {title}}) => (
           <NewsScrollHeader title={title} />
         )}

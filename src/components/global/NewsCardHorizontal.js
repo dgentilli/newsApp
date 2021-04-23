@@ -12,11 +12,11 @@ const Image = styled.Image`
 `;
 
 const NewsCardHorizontal = ({data}) => {
-  //console.log({data});
+  //console.log('newsCardHorizontal data', data);
   const context = useContext(Context);
   const {theme} = context;
   const {title, abstract, url, multimedia} = data;
-  const imageUrl = multimedia[3].url;
+  const imageUrl = multimedia && multimedia[3].url;
   const titleDisplay =
     title.length > 45 ? `${title.substring(0, 45)}...` : title;
   const abstractDisplay =
