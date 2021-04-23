@@ -13,6 +13,7 @@ import {
   SecondaryHeading,
   PrimaryHeading,
 } from '../components/global/Main';
+import ErrorDisplay from '../components/global/ErrorDisplay';
 import theme from '../theme';
 
 import {NYT_API_KEY} from '@env';
@@ -59,6 +60,7 @@ const AdvancedSearch = () => {
   const [headline, setHeadline] = useState('');
   const [newsDesk, setNewsDesk] = useState('');
   const [section, setSection] = useState('');
+  const [error, setError] = useState(false);
 
   const navigation = useNavigation();
 
@@ -73,6 +75,7 @@ const AdvancedSearch = () => {
 
       setFilterValue(filterString);
       let root = `https://api.nytimes.com/svc/search/v2`;
+      //let root = `https://api.nytime.com/svc/search/v2`; //Bad root for testing error handling
       let response = await axios.get(
         `${root}/articlesearch.json?q=${queryValue}&api-key=${NYT_API_KEY}&fq=${filterValue}`,
       );
@@ -90,6 +93,10 @@ const AdvancedSearch = () => {
       });
     } catch (err) {
       console.log({err});
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 5000);
     }
   };
 
@@ -106,6 +113,7 @@ const AdvancedSearch = () => {
 
   return (
     <ScrollView>
+      {error ? <ErrorDisplay /> : null}
       <Container theme={theme}>
         <Spacer height={10} />
         <PrimaryHeading theme={theme}>Enter Your Search Terms</PrimaryHeading>
