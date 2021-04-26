@@ -5,6 +5,7 @@ const axios = require('axios');
 import NewsCardHorizontal from './NewsCardHorizontal';
 import SeeMore from '../feed/SeeMore';
 import ErrorDisplay from './ErrorDisplay';
+import {SecondaryHeading} from './Main';
 
 import {NYT_API_KEY} from '@env';
 
@@ -42,7 +43,7 @@ const NewsScroll = ({title, isPopularStories}) => {
     fetchNews();
   }, []);
 
-  return (
+  return articleData.length > 0 ? (
     <FlatList
       horizontal
       showsHorizontalScrollIndicator={false}
@@ -56,6 +57,8 @@ const NewsScroll = ({title, isPopularStories}) => {
       }
       ListHeaderComponent={error ? <ErrorDisplay /> : null}
     />
+  ) : (
+    <SecondaryHeading>No Articles to Display</SecondaryHeading>
   );
 };
 
