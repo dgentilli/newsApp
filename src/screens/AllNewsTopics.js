@@ -25,7 +25,7 @@ const AllNewsTopics = () => {
       <Spacer height={10} />
       <FlatList
         data={allNewsCategories}
-        keyExtractor={item => item}
+        keyExtractor={item => item.title}
         renderItem={({item}) => {
           return (
             <>
