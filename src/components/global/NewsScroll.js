@@ -4,11 +4,13 @@ const axios = require('axios');
 
 import NewsCardHorizontal from './NewsCardHorizontal';
 import SeeMore from '../feed/SeeMore';
+import ErrorDisplay from './ErrorDisplay';
 
 import {NYT_API_KEY} from '@env';
 
 const NewsScroll = ({title, isPopularStories}) => {
   const [articleData, setArticleData] = useState([]);
+  const [error, setError] = useState(false);
   useEffect(() => {
     let root = isPopularStories
       ? `https://api.nytimes.com/svc/mostpopular/v2`
@@ -31,6 +33,10 @@ const NewsScroll = ({title, isPopularStories}) => {
         setArticleData(response.data.results);
       } catch (error) {
         console.log({error});
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 5000);
       }
     };
     fetchNews();
@@ -48,6 +54,7 @@ const NewsScroll = ({title, isPopularStories}) => {
       ListFooterComponent={
         !isPopularStories ? <SeeMore section={title} /> : null
       }
+      ListHeaderComponent={error ? <ErrorDisplay /> : null}
     />
   );
 };
