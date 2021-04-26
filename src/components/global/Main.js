@@ -50,6 +50,7 @@ export const HorizontalCardContainer = styled.TouchableOpacity`
   border-radius: 4px;
   border-width: 1px;
   border-color: ${theme.color.LIGHT_GRAY};
+  overflow: hidden;
 `;
 
 export const Title = styled.Text`
