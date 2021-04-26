@@ -34,9 +34,11 @@ const NewsCardVertical = ({data}) => {
   const {title, abstract, url, multimedia, byline} = data;
   const imageUrl = multimedia && multimedia[2].url;
   const titleDisplay =
-    title.length > 55 ? `${title.substring(0, 55)}...` : title;
+    title && title.length > 55 ? `${title.substring(0, 55)}...` : title;
   const abstractDisplay =
-    abstract.length > 105 ? `${abstract.slice(0, 105)}...` : abstract;
+    abstract && abstract.length > 105
+      ? `${abstract.slice(0, 105)}...`
+      : abstract;
 
   return (
     <CardVerticalContainer onPress={() => Linking.openURL(url)}>
