@@ -32,7 +32,7 @@ const NewsCardVertical = ({data}) => {
   const context = useContext(Context);
   const {theme} = context;
   const {title, abstract, url, multimedia, byline} = data;
-  const imageUrl = multimedia[2].url;
+  const imageUrl = multimedia && multimedia[2].url;
   const titleDisplay =
     title.length > 55 ? `${title.substring(0, 55)}...` : title;
   const abstractDisplay =
