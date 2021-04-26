@@ -13,10 +13,21 @@ const Image = styled.Image`
 
 const NewsCardHorizontal = ({data}) => {
   //console.log('newsCardHorizontal data', data);
+  // console.log(
+  //   'data.media[0]',
+  //   data.media && data.media[0] && data.media[0]['media-metadata'][0].url,
+  // );
   const context = useContext(Context);
   const {theme} = context;
   const {title, abstract, url, multimedia} = data;
-  const imageUrl = multimedia && multimedia[3].url;
+  const mediametadata =
+    data.media && data.media[0] && data.media[0]['media-metadata'][1].url;
+  const imageUrl = multimedia
+    ? multimedia[3].url
+    : mediametadata
+    ? mediametadata
+    : null;
+  console.log({imageUrl});
   const titleDisplay =
     title.length > 45 ? `${title.substring(0, 45)}...` : title;
   const abstractDisplay =

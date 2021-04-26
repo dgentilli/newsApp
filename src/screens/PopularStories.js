@@ -19,7 +19,7 @@ const PopularStories = () => {
 
   const newsData = popularCategories.map(item => ({
     title: item,
-    data: [newsFeedMockData],
+    data: [`${item}`],
   }));
 
   return (
@@ -28,7 +28,7 @@ const PopularStories = () => {
         sections={newsData}
         keyExtractor={item => item}
         renderItem={({item}) => (
-          <NewsScroll data={item} isPopularStories={true} />
+          <NewsScroll title={item} isPopularStories={true} />
         )}
         renderSectionHeader={({section: {title}}) => (
           <NewsScrollHeader title={title} />

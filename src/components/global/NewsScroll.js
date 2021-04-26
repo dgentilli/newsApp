@@ -7,11 +7,21 @@ import SeeMore from '../feed/SeeMore';
 
 import {NYT_API_KEY} from '@env';
 
-const NewsScroll = ({title}) => {
+const NewsScroll = ({title, isPopularStories}) => {
   const [articleData, setArticleData] = useState([]);
   useEffect(() => {
-    let root = `https://api.nytimes.com/svc/topstories/v2`;
-    let section = `/${title}`;
+    let root = isPopularStories
+      ? `https://api.nytimes.com/svc/mostpopular/v2`
+      : `https://api.nytimes.com/svc/topstories/v2`;
+    let section = !isPopularStories
+      ? `/${title}`
+      : title === 'Most Emailed'
+      ? `/emailed/7`
+      : isPopularStories && title === 'Most Shared'
+      ? `/shared/1/facebook`
+      : isPopularStories && title === 'Most Viewed'
+      ? `/viewed/1`
+      : null;
     const fetchNews = async () => {
       try {
         let response = await axios.get(
