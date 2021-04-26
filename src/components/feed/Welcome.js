@@ -16,7 +16,9 @@ const Welcome = () => {
     <>
       <Spacer height={10} />
       <PrimaryHeading theme={theme}>Welcome!</PrimaryHeading>
-      <SecondaryHeading>You're using Dave's News App</SecondaryHeading>
+      <SecondaryHeading theme={theme}>
+        You're using Dave's News App
+      </SecondaryHeading>
       <Spacer height={10} />
     </>
   );
