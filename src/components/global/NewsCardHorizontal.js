@@ -27,7 +27,7 @@ const NewsCardHorizontal = ({data}) => {
     : mediametadata
     ? mediametadata
     : null;
-  console.log({imageUrl});
+  //console.log({imageUrl});
   const titleDisplay =
     title.length > 45 ? `${title.substring(0, 45)}...` : title;
   const abstractDisplay =

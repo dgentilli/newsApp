@@ -28,6 +28,7 @@ const Image = styled.Image`
 `;
 
 const NewsCardVertical = ({data}) => {
+  //console.log('newsCardVertical data', data);
   const context = useContext(Context);
   const {theme} = context;
   const {title, abstract, url, multimedia, byline} = data;
