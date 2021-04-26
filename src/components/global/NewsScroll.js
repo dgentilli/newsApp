@@ -45,7 +45,9 @@ const NewsScroll = ({title, isPopularStories}) => {
       renderItem={({item}) => {
         return <NewsCardHorizontal data={item} />;
       }}
-      ListFooterComponent={<SeeMore section={title} />}
+      ListFooterComponent={
+        !isPopularStories ? <SeeMore section={title} /> : null
+      }
     />
   );
 };
