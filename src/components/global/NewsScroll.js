@@ -1,17 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {FlatList} from 'react-native';
 const axios = require('axios');
 
 import NewsCardHorizontal from './NewsCardHorizontal';
 import SeeMore from '../feed/SeeMore';
 import ErrorDisplay from './ErrorDisplay';
-import {SecondaryHeading} from './Main';
+import {SecondaryHeading, Container, Spacer} from './Main';
+import {Context} from '../../../App';
 
 import {NYT_API_KEY} from '@env';
 
 const NewsScroll = ({title, isPopularStories}) => {
   const [articleData, setArticleData] = useState([]);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const context = useContext(Context);
+  const {theme} = context;
   useEffect(() => {
     let root = isPopularStories
       ? `https://api.nytimes.com/svc/mostpopular/v2`
@@ -26,15 +30,18 @@ const NewsScroll = ({title, isPopularStories}) => {
       ? `/viewed/1`
       : null;
     const fetchNews = async () => {
+      setIsLoading(true);
       try {
         let response = await axios.get(
           `${root}${section}.json?api-key=${NYT_API_KEY}`,
         );
         //console.log('newsScroll response', response.data.results);
         setArticleData(response.data.results);
+        setIsLoading(false);
       } catch (error) {
         console.log({error});
         setError(true);
+        setIsLoading(false);
         setTimeout(() => {
           setError(false);
         }, 5000);
@@ -57,8 +64,16 @@ const NewsScroll = ({title, isPopularStories}) => {
       }
       ListHeaderComponent={error ? <ErrorDisplay /> : null}
     />
+  ) : articleData.length === 0 && !isLoading ? (
+    <Container theme={theme}>
+      <Spacer height={10} />
+      <SecondaryHeading theme={theme}>No Articles to Display</SecondaryHeading>
+    </Container>
   ) : (
-    <SecondaryHeading>No Articles to Display</SecondaryHeading>
+    <Container theme={theme}>
+      <Spacer height={10} />
+      <SecondaryHeading theme={theme}>Loading...</SecondaryHeading>
+    </Container>
   );
 };
 
