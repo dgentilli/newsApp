@@ -1,24 +1,25 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
-import styled from 'styled-components';
 const axios = require('axios');
 
 import {Context} from '../../App';
 import {
   Container,
-  Button,
-  ButtonText,
+  SecondaryHeading,
   Spacer,
   PrimaryHeading,
 } from '../components/global/Main';
 import NewsCardVertical from '../components/global/NewsCardVertical';
 import ApiLogo from '../components/global/ApiLogo';
+import ErrorDisplay from '../components/global/ErrorDisplay';
 import {newsFeedMockData} from '../mockData/newsFeedMockData';
 
 import {NYT_API_KEY} from '@env';
 
 const NewsListByCategory = ({route}) => {
   const [articleData, setArticleData] = useState([]);
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const context = useContext(Context);
   const {theme} = context;
   const {params} = route;
@@ -28,20 +29,27 @@ const NewsListByCategory = ({route}) => {
     let root = `https://api.nytimes.com/svc/topstories/v2`;
 
     const fetchNews = async () => {
+      setIsLoading(true);
       try {
         let response = await axios.get(
           `${root}/${section}.json?api-key=${NYT_API_KEY}`,
         );
         //console.log('newsScroll response', response.data.results);
         setArticleData(response.data.results);
+        setIsLoading(false);
       } catch (error) {
         console.log({error});
+        setError(true);
+        setIsLoading(false);
+        setTimeout(() => {
+          setError(false);
+        }, 5000);
       }
     };
     fetchNews();
   }, [section]);
 
-  return (
+  return articleData.length > 0 ? (
     <Container theme={theme}>
       <Spacer height={20} />
       <PrimaryHeading theme={theme}>
@@ -60,7 +68,18 @@ const NewsListByCategory = ({route}) => {
             <ApiLogo />
           </>
         }
+        ListHeaderComponent={error ? <ErrorDisplay /> : null}
       />
+    </Container>
+  ) : articleData.length === 0 && !isLoading ? (
+    <Container theme={theme}>
+      <Spacer height={10} />
+      <SecondaryHeading theme={theme}>No Articles to Display</SecondaryHeading>
+    </Container>
+  ) : (
+    <Container theme={theme}>
+      <Spacer height={10} />
+      <SecondaryHeading theme={theme}>Loading...</SecondaryHeading>
     </Container>
   );
 };
