@@ -61,11 +61,37 @@ const App = () => {
         modifyNewsPreferences,
       }}>
       <NavigationContainer>
-        <Tab.Navigator initialRouteName="Feed">
-          <Tab.Screen name="Feed" component={FeedStack} />
-          <Tab.Screen name="AdvancedSearch" component={SearchStack} />
-          <Tab.Screen name="PopularStories" component={PopuarStoriesStack} />
-          <Tab.Screen name="MyStuff" component={MyStuffStack} />
+        <Tab.Navigator
+          initialRouteName="Feed"
+          tabBarOptions={{
+            inactiveTintColor: theme === 'dark' ? '#f8f9faff' : '#343a40ff',
+            activeTintColor: theme === 'dark' ? '#4cc9f0ff' : '#f72585ff',
+
+            style: {
+              backgroundColor: theme === 'dark' ? '#343a40ff' : '#f8f9faff',
+            },
+          }}>
+          <Tab.Screen
+            name="Feed"
+            component={FeedStack}
+            options={{title: 'Feed'}}
+            style={{color: 'red'}}
+          />
+          <Tab.Screen
+            name="AdvancedSearch"
+            component={SearchStack}
+            options={{title: 'Search'}}
+          />
+          <Tab.Screen
+            name="PopularStories"
+            component={PopuarStoriesStack}
+            options={{title: 'Popular Stories'}}
+          />
+          <Tab.Screen
+            name="MyStuff"
+            component={MyStuffStack}
+            options={{title: 'My Settings'}}
+          />
         </Tab.Navigator>
       </NavigationContainer>
     </Context.Provider>
