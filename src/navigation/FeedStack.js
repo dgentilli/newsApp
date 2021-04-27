@@ -12,8 +12,16 @@ const FeedStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Feed" component={Feed} />
-      <Stack.Screen name="NewsListByCategory" component={NewsListByCategory} />
-      <Stack.Screen name="AllNewsTopics" component={AllNewsTopics} />
+      <Stack.Screen
+        name="NewsListByCategory"
+        component={NewsListByCategory}
+        options={{headerTitle: 'News Category'}}
+      />
+      <Stack.Screen
+        name="AllNewsTopics"
+        component={AllNewsTopics}
+        options={{headerTitle: 'All Topics'}}
+      />
       <Stack.Screen name="ArticleView" component={ArticleView} />
     </Stack.Navigator>
   );

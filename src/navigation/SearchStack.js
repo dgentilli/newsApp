@@ -9,8 +9,16 @@ const SearchStack = () => {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name="AdvancedSearch" component={AdvancedSearch} />
-      <Stack.Screen name="SearchDisplay" component={SearchDisplay} />
+      <Stack.Screen
+        name="AdvancedSearch"
+        component={AdvancedSearch}
+        options={{headerTitle: 'Search'}}
+      />
+      <Stack.Screen
+        name="SearchDisplay"
+        component={SearchDisplay}
+        options={{headerTitle: 'Search Results'}}
+      />
     </Stack.Navigator>
   );
 };

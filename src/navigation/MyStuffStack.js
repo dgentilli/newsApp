@@ -9,8 +9,16 @@ const MyStuffStack = () => {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name="MyStuff" component={MyStuff} />
-      <Stack.Screen name="SetNewsPreferences" component={SetNewsPreferences} />
+      <Stack.Screen
+        name="MyStuff"
+        component={MyStuff}
+        options={{headerTitle: 'My Stuff'}}
+      />
+      <Stack.Screen
+        name="SetNewsPreferences"
+        component={SetNewsPreferences}
+        options={{headerTitle: 'News Preferences'}}
+      />
     </Stack.Navigator>
   );
 };

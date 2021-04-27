@@ -11,10 +11,26 @@ const PopuarStoriesStack = () => {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Popular Stories" component={PopularStories} />
-      <Stack.Screen name="AllNewsTopics" component={AllNewsTopics} />
-      <Stack.Screen name="ArticleView" component={ArticleView} />
-      <Stack.Screen name="NewsListByCategory" component={NewsListByCategory} />
+      <Stack.Screen
+        name="Popular Stories"
+        component={PopularStories}
+        options={{headerTitle: 'Popular Stories'}}
+      />
+      <Stack.Screen
+        name="AllNewsTopics"
+        component={AllNewsTopics}
+        options={{headerTitle: 'All Topics'}}
+      />
+      <Stack.Screen
+        name="ArticleView"
+        component={ArticleView}
+        options={{headerTitle: 'Article View'}}
+      />
+      <Stack.Screen
+        name="NewsListByCategory"
+        component={NewsListByCategory}
+        options={{headerTitle: 'News Category'}}
+      />
     </Stack.Navigator>
   );
 };
