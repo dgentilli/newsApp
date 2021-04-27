@@ -12,11 +12,6 @@ const Image = styled.Image`
 `;
 
 const NewsCardHorizontal = ({data}) => {
-  //console.log('newsCardHorizontal data', data);
-  // console.log(
-  //   'data.media[0]',
-  //   data.media && data.media[0] && data.media[0]['media-metadata'][0].url,
-  // );
   const context = useContext(Context);
   const {theme} = context;
   const {title, abstract, url, multimedia} = data;
