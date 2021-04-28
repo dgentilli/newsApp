@@ -11,26 +11,33 @@ import FeedStack from './src/navigation/FeedStack';
 import MyStuffStack from './src/navigation/MyStuffStack';
 import SearchStack from './src/navigation/SearchStack';
 import PopuarStoriesStack from './src/navigation/PopularStoriesStack';
+import AuthFlow from './src/screens/AuthFlow';
 import {firebaseConfig} from './firebaseConfig';
 
 export const Context = React.createContext();
 
 const mockState = {
+  //Use a hard coded user until time to build auth
   loggedInUser: {
     id: 1327583,
     email: 'homer@testmail.test',
     nickname: 'Homer',
   },
-  //use a hard coded user until it's time to build the auth.
+  //loggedInUser: null,
   theme: 'light', //default, but will eventually get this from the OS.
   newsCategoryPreferences: ['us', 'world', 'science', 'arts', 'business'], //These are the default categories
   isFirstLogin: false, //set this false until its time to work on the modal
 };
 
 const App = () => {
-  firebase.initializeApp(firebaseConfig);
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  } else {
+    firebase.app();
+  }
 
-  const [loggedInUser, setLoggedInUser] = useState(mockState.loggedInUser);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [hasAccount, setHasAccount] = useState(false);
   const [theme, setTheme] = useState(mockState.theme);
   const [newsCategoryPreferences, setNewsCategoryPreferences] = useState(
     mockState.newsCategoryPreferences,
@@ -54,7 +61,19 @@ const App = () => {
     }
   };
 
-  return (
+  const authenticateUser = () => {
+    setLoggedInUser(mockState.loggedInUser);
+  };
+
+  const signupUser = () => {
+    setHasAccount(true);
+  };
+
+  const toggleLoginSignup = () => {
+    setHasAccount(!hasAccount);
+  };
+
+  return loggedInUser ? (
     <Context.Provider
       value={{
         loggedInUser,
@@ -99,6 +118,14 @@ const App = () => {
         </Tab.Navigator>
       </NavigationContainer>
     </Context.Provider>
+  ) : (
+    <AuthFlow
+      theme={theme}
+      authenticateUser={authenticateUser}
+      signupUser={signupUser}
+      hasAccount={hasAccount}
+      toggleLoginSignup={toggleLoginSignup}
+    />
   );
 };
 export default App;
