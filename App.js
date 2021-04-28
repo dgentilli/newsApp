@@ -2,14 +2,16 @@ import 'react-native-gesture-handler';
 import React, {useState} from 'react';
 import {Appearance} from 'react-native';
 import {useColorScheme} from 'react-native';
-
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 import FeedStack from './src/navigation/FeedStack';
 import MyStuffStack from './src/navigation/MyStuffStack';
 import SearchStack from './src/navigation/SearchStack';
 import PopuarStoriesStack from './src/navigation/PopularStoriesStack';
+import {firebaseConfig} from './firebaseConfig';
 
 export const Context = React.createContext();
 
@@ -26,6 +28,8 @@ const mockState = {
 };
 
 const App = () => {
+  firebase.initializeApp(firebaseConfig);
+
   const [loggedInUser, setLoggedInUser] = useState(mockState.loggedInUser);
   const [theme, setTheme] = useState(mockState.theme);
   const [newsCategoryPreferences, setNewsCategoryPreferences] = useState(
