@@ -14,6 +14,8 @@ import {
 } from '../global/Main';
 
 const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const handleAnonymousLogin = () => {
     firebase
       .auth()
@@ -70,7 +72,22 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
       <Spacer height={30} />
       <SecondaryHeading>Already Know You'll Love The App?</SecondaryHeading>
       <SecondaryHeading>Sign Up With Email And Password!</SecondaryHeading>
-
+      <Spacer height={10} />
+      <FormInput
+        height={50}
+        theme={theme}
+        value={email}
+        placeholder="Email"
+        onChangeText={text => setEmail(text)}
+      />
+      <Spacer height={5} />
+      <FormInput
+        height={50}
+        theme={theme}
+        value={password}
+        placeholder="Password"
+        onChangeText={text => setPassword(text)}
+      />
       <Spacer height={30} />
       <Button onPress={toggleLoginSignup}>
         <ButtonText>Already signed up?</ButtonText>
