@@ -160,7 +160,6 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				8F7737C1292F963EA9A46278 /* [CP] Embed Pods Frameworks */,
 				8E7857F4F191992B4D5E086B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -183,7 +182,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				9537BAC1869D917476B1D6CC /* [CP] Embed Pods Frameworks */,
 				C94039ACCD7F8F7BD292E06E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -302,40 +300,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-newsApp-newsAppTests/Pods-newsApp-newsAppTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8F7737C1292F963EA9A46278 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-newsApp-newsAppTests/Pods-newsApp-newsAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-newsApp-newsAppTests/Pods-newsApp-newsAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-newsApp-newsAppTests/Pods-newsApp-newsAppTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9537BAC1869D917476B1D6CC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-newsApp/Pods-newsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-newsApp/Pods-newsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-newsApp/Pods-newsApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C94039ACCD7F8F7BD292E06E /* [CP] Copy Pods Resources */ = {
