@@ -46,6 +46,8 @@ const App = () => {
   const colorScheme = Appearance.getColorScheme();
   const Tab = createBottomTabNavigator();
 
+  console.log({loggedInUser});
+
   const toggleTheme = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
@@ -61,8 +63,8 @@ const App = () => {
     }
   };
 
-  const authenticateUser = () => {
-    setLoggedInUser(mockState.loggedInUser);
+  const setUserInfo = userInfo => {
+    setLoggedInUser(userInfo);
   };
 
   const signupUser = () => {
@@ -121,7 +123,7 @@ const App = () => {
   ) : (
     <AuthFlow
       theme={theme}
-      authenticateUser={authenticateUser}
+      setUserInfo={setUserInfo}
       signupUser={signupUser}
       hasAccount={hasAccount}
       toggleLoginSignup={toggleLoginSignup}

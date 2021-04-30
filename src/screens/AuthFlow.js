@@ -12,7 +12,7 @@ import {
 
 const AuthFlow = ({
   theme,
-  authenticateUser,
+  setUserInfo,
   signupUser,
   hasAccount,
   toggleLoginSignup,
@@ -20,7 +20,7 @@ const AuthFlow = ({
   return hasAccount ? (
     <Login
       theme={theme}
-      authenticateUser={authenticateUser}
+      setUserInfo={setUserInfo}
       hasAccount={hasAccount}
       toggleLoginSignup={toggleLoginSignup}
     />

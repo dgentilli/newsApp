@@ -1,24 +1,81 @@
 import React, {useState} from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 import {
   Container,
   PrimaryHeading,
+  SecondaryHeading,
   Button,
   ButtonText,
   Spacer,
 } from '../global/Main';
 
-const Login = ({theme, authenticateUser, toggleLoginSignup}) => {
-  return (
+const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
+  const [loginError, setLoginError] = useState(null);
+  const handleAnonymousLogin = () => {
+    firebase
+      .auth()
+      .signInAnonymously()
+      .then(() => {
+        getUserInfo();
+      })
+      .catch(error => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        setLoginError(
+          `Error: ${errorCode}. Please try again in a few minutes.`,
+        );
+      });
+  };
+
+  const getUserInfo = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+
+        const userData = {
+          userId: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+          emailVerified: user.emailVerified,
+          isAnonymous: user.isAnonymous,
+        };
+        setUserInfo(userData);
+      } else {
+        setUserInfo(null);
+        setLoginError(
+          'Something went wrong. Please try again in a few minutes.',
+        );
+      }
+    });
+  };
+
+  return !loginError ? (
     <Container theme={theme}>
+      <Spacer height={30} />
       <PrimaryHeading theme={theme}>Login</PrimaryHeading>
-      <Button onPress={() => authenticateUser()}>
-        <ButtonText>Login</ButtonText>
-      </Button>
+      <Spacer height={30} />
+      <SecondaryHeading theme={theme}>Login As Guest</SecondaryHeading>
       <Spacer height={10} />
+
+      <Button onPress={() => handleAnonymousLogin()}>
+        <ButtonText>Guest Login</ButtonText>
+      </Button>
+      <Spacer height={30} />
       <Button onPress={toggleLoginSignup}>
         <ButtonText>Need to sign up?</ButtonText>
       </Button>
+    </Container>
+  ) : (
+    <Container theme={theme}>
+      <Spacer height={30} />
+      <SecondaryHeading theme={theme}>
+        {loginError
+          ? loginError
+          : 'Something went wrong. Please try again in a few mintes.'}
+      </SecondaryHeading>
     </Container>
   );
 };
