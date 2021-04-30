@@ -10,20 +10,8 @@ import {
   Button,
   ButtonText,
   Spacer,
+  FormInput,
 } from '../global/Main';
-import theme from '../../theme';
-
-const FormInput = styled.TextInput`
-  width: 70%;
-  height: ${props => props.height}px;
-  border-width: 1px;
-  border-color: ${theme.color.LIGHT_GRAY};
-  border-radius: 20px;
-  margin: 0 auto;
-  padding: 12px;
-  color: ${props =>
-    props.theme === 'dark' ? theme.color.TEXT_LIGHT : theme.color.TEXT_DARK};
-`;
 
 const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
   const [loginError, setLoginError] = useState(null);
