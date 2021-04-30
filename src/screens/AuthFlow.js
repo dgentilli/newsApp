@@ -27,6 +27,7 @@ const AuthFlow = ({
   ) : (
     <Signup
       theme={theme}
+      setUserInfo={setUserInfo}
       signupUser={signupUser}
       hasAccount={hasAccount}
       toggleLoginSignup={toggleLoginSignup}
