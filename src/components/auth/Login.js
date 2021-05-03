@@ -12,11 +12,13 @@ import {
   Spacer,
   FormInput,
 } from '../global/Main';
+import ErrorDisplay from '../global/ErrorDisplay';
 
 const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
-  const [loginError, setLoginError] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+  const [userMessage, setUserMessage] = useState(null);
   const handleAnonymousLogin = () => {
     firebase
       .auth()
@@ -27,9 +29,34 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
       .catch(error => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        setLoginError(
+        setError(true);
+        setUserMessage(
           `Error: ${errorCode}. Please try again in a few minutes.`,
         );
+        setTimeout(() => {
+          setError(false);
+        }, 5000);
+      });
+  };
+
+  const loginExistingUser = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        // Signed in
+        const user = userCredential.user;
+        setUserMessage('Successful Login!');
+        getUserInfo();
+      })
+      .catch(error => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        setError(true);
+        setUserMessage(errorMessage);
+        setTimeout(() => {
+          setError(false);
+        }, 5000);
       });
   };
 
@@ -56,9 +83,15 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
     });
   };
 
-  return !loginError ? (
+  return (
     <Container theme={theme}>
       <Spacer height={30} />
+      {error ? (
+        <>
+          <ErrorDisplay theme={theme} msg={userMessage} />
+          <Spacer height={10} />
+        </>
+      ) : null}
       <PrimaryHeading theme={theme}>Login</PrimaryHeading>
       <Spacer height={30} />
       <SecondaryHeading theme={theme}>Just Passing By?</SecondaryHeading>
@@ -76,6 +109,8 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
         theme={theme}
         value={email}
         placeholder="Email"
+        autoCapitalize="none"
+        autoCorrect={false}
         onChangeText={text => setEmail(text)}
       />
       <Spacer height={5} />
@@ -84,21 +119,20 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
         theme={theme}
         value={password}
         placeholder="Password"
+        autoCapitalize="none"
+        autoCorrect={false}
+        secureTextEntry
         onChangeText={text => setPassword(text)}
       />
+      <Spacer height={10} />
+
+      <Button onPress={loginExistingUser}>
+        <ButtonText>Login With Account</ButtonText>
+      </Button>
       <Spacer height={30} />
       <Button onPress={toggleLoginSignup}>
         <ButtonText>Need To Sign Up?</ButtonText>
       </Button>
-    </Container>
-  ) : (
-    <Container theme={theme}>
-      <Spacer height={30} />
-      <SecondaryHeading theme={theme}>
-        {loginError
-          ? loginError
-          : 'Something went wrong. Please try again in a few mintes.'}
-      </SecondaryHeading>
     </Container>
   );
 };
