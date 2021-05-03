@@ -29,7 +29,8 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
       .catch(error => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        setLoginError(
+        setError(true);
+        setUserMessage(
           `Error: ${errorCode}. Please try again in a few minutes.`,
         );
       });
