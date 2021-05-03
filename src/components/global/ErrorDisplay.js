@@ -13,7 +13,7 @@ const ErrorText = styled.Text`
   color: ${theme.color.BG_LIGHT};
 `;
 
-const ErrorDisplay = ({theme}) => {
+const ErrorDisplay = ({theme, msg}) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.sequence([
@@ -31,7 +31,7 @@ const ErrorDisplay = ({theme}) => {
     ]).start();
   }, [fadeAnim]);
 
-  return (
+  return !msg ? (
     <Animated.View
       style={{
         opacity: fadeAnim,
@@ -49,6 +49,20 @@ const ErrorDisplay = ({theme}) => {
       </ErrorText>
       <ErrorText fontSize={16} theme={theme}>
         Please wait a moment, then try your search again.
+      </ErrorText>
+      <Spacer height={20} />
+    </Animated.View>
+  ) : (
+    <Animated.View
+      style={{
+        opacity: fadeAnim,
+        height: 'auto',
+        backgroundColor: pink,
+      }}
+      theme={theme}>
+      <Spacer height={20} />
+      <ErrorText fontSize={20} theme={theme}>
+        {msg}
       </ErrorText>
       <Spacer height={20} />
     </Animated.View>
