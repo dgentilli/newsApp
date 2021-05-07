@@ -46,7 +46,7 @@ const App = () => {
   const colorScheme = Appearance.getColorScheme();
   const Tab = createBottomTabNavigator();
 
-  console.log({loggedInUser});
+  //console.log({loggedInUser});
 
   const toggleTheme = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
@@ -81,9 +81,11 @@ const App = () => {
         loggedInUser,
         theme,
         newsCategoryPreferences,
-        isFirstLogin,
         toggleTheme,
         modifyNewsPreferences,
+        signupUser,
+        hasAccount,
+        toggleLoginSignup,
       }}>
       <NavigationContainer>
         <Tab.Navigator
