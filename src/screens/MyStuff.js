@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import theme from '../theme';
 import {Context} from '../../App';
 import {Container, Spacer, PrimaryHeading} from '../components/global/Main';
+import Logout from '../components/auth/Logout';
 
 const Row = styled.View`
   display: flex;
@@ -47,6 +48,8 @@ const MyStuff = () => {
           <CustomText theme={theme}>Set News Preferences</CustomText>
         </TouchableOpacity>
       </Row>
+      <Spacer height={30} />
+      <Logout />
     </Container>
   );
 };

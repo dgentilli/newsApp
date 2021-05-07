@@ -74,9 +74,7 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
         setUserInfo(userData);
       } else {
         setUserInfo(null);
-        setLoginError(
-          'Something went wrong. Please try again in a few minutes.',
-        );
+        setError('Something went wrong. Please try again in a few minutes.');
       }
     });
   };

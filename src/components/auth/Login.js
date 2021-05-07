@@ -76,9 +76,7 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
         setUserInfo(userData);
       } else {
         setUserInfo(null);
-        setLoginError(
-          'Something went wrong. Please try again in a few minutes.',
-        );
+        setError('Something went wrong. Please try again in a few minutes.');
       }
     });
   };
@@ -101,8 +99,12 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
         <ButtonText>Guest Login</ButtonText>
       </Button>
       <Spacer height={30} />
-      <SecondaryHeading>Already Have An Account?</SecondaryHeading>
-      <SecondaryHeading>Login With Your Email And Password</SecondaryHeading>
+      <SecondaryHeading theme={theme}>
+        Already Have An Account?
+      </SecondaryHeading>
+      <SecondaryHeading theme={theme}>
+        Login With Your Email And Password
+      </SecondaryHeading>
       <Spacer height={10} />
       <FormInput
         height={50}
