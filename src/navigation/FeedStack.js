@@ -5,6 +5,7 @@ import Feed from '../screens/Feed';
 import NewsListByCategory from '../screens/NewsListByCategory';
 import AllNewsTopics from '../screens/AllNewsTopics';
 import ArticleView from '../screens/ArticleView';
+import AuthFlow from '../screens/AuthFlow';
 import {Context} from '../../App';
 
 import theme from '../theme';
@@ -57,6 +58,8 @@ const FeedStack = () => {
           },
         }}
       />
+      <Stack.Screen name="AuthFlow" component={AuthFlow} />
+
       <Stack.Screen name="ArticleView" component={ArticleView} />
     </Stack.Navigator>
   );
