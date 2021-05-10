@@ -41,7 +41,7 @@ const SearchDisplay = ({route}) => {
         <Spacer height={20} />
         <FlatList
           data={articles}
-          keyExtractor={item => item}
+          keyExtractor={item => item.web_url}
           renderItem={({item}) => {
             return <SearchResultItem articleData={item} />;
           }}

@@ -59,7 +59,9 @@ const SearchResultItem = ({articleData}) => {
   return (
     <ResultItemContainer theme={theme}>
       <Row flex={2}>
-        <Abstract theme={theme}>...{abstractDisplay}</Abstract>
+        <Abstract theme={theme} numberOfLines={3}>
+          ...{abstract && abstract}
+        </Abstract>
       </Row>
       <Row flex={1}>
         <RowItem theme={theme}>Section: {section_name}</RowItem>
