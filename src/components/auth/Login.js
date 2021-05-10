@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import styled from 'styled-components';
 
 import {
   Container,
@@ -13,31 +12,13 @@ import {
   FormInput,
 } from '../global/Main';
 import ErrorDisplay from '../global/ErrorDisplay';
+import AnonymousLogin from './AnonymousLogin';
 
 const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [userMessage, setUserMessage] = useState(null);
-  const handleAnonymousLogin = () => {
-    firebase
-      .auth()
-      .signInAnonymously()
-      .then(() => {
-        getUserInfo();
-      })
-      .catch(error => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        setError(true);
-        setUserMessage(
-          `Error: ${errorCode}. Please try again in a few minutes.`,
-        );
-        setTimeout(() => {
-          setError(false);
-        }, 5000);
-      });
-  };
 
   const loginExistingUser = () => {
     firebase
@@ -92,12 +73,12 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
       ) : null}
       <PrimaryHeading theme={theme}>Login</PrimaryHeading>
       <Spacer height={30} />
-      <SecondaryHeading theme={theme}>Just Passing By?</SecondaryHeading>
-      <SecondaryHeading theme={theme}>Login As A Guest</SecondaryHeading>
-      <Spacer height={10} />
-      <Button onPress={() => handleAnonymousLogin()}>
-        <ButtonText>Guest Login</ButtonText>
-      </Button>
+      <AnonymousLogin
+        theme={theme}
+        setUserInfo={setUserInfo}
+        setUserMessage={setUserMessage}
+        setError={setError}
+      />
       <Spacer height={30} />
       <SecondaryHeading theme={theme}>
         Already Have An Account?

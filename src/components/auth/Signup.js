@@ -12,29 +12,13 @@ import {
   FormInput,
 } from '../global/Main';
 import ErrorDisplay from '../global/ErrorDisplay';
+import AnonymousLogin from './AnonymousLogin';
 
 const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userMessage, setUserMessage] = useState(null);
   const [error, setError] = useState(false);
-  console.log({userMessage});
-  const handleAnonymousLogin = () => {
-    firebase
-      .auth()
-      .signInAnonymously()
-      .then(() => {
-        getUserInfo();
-      })
-      .catch(error => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        setError(true);
-        setUserMessage(
-          `Error: ${errorCode}. Please try again in a few minutes.`,
-        );
-      });
-  };
 
   const signupNewUser = () => {
     //console.log('onButtonPress fired ************************');
@@ -58,26 +42,6 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
       });
   };
 
-  const getUserInfo = () => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-
-        const userData = {
-          userId: user.uid,
-          displayName: user.displayName,
-          email: user.email,
-          emailVerified: user.emailVerified,
-          isAnonymous: user.isAnonymous,
-        };
-        setUserInfo(userData);
-      } else {
-        setUserInfo(null);
-        setError('Something went wrong. Please try again in a few minutes.');
-      }
-    });
-  };
   return (
     <Container theme={theme}>
       <Spacer height={30} />
@@ -89,13 +53,12 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
       ) : null}
       <PrimaryHeading theme={theme}>Signup</PrimaryHeading>
       <Spacer height={30} />
-      <SecondaryHeading theme={theme}>Just Passing By?</SecondaryHeading>
-      <SecondaryHeading theme={theme}>Login As A Guest</SecondaryHeading>
-      <Spacer height={10} />
-      <Button onPress={() => handleAnonymousLogin()}>
-        <ButtonText>Guest Login</ButtonText>
-      </Button>
-      <Spacer height={30} />
+      <AnonymousLogin
+        theme={theme}
+        setUserInfo={setUserInfo}
+        setUserMessage={setUserMessage}
+        setError={setError}
+      />
       <Spacer height={30} />
       <SecondaryHeading>Already Know You'll Love The App?</SecondaryHeading>
       <SecondaryHeading>Sign Up With Email And Password!</SecondaryHeading>
