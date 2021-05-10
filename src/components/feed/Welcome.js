@@ -5,8 +5,8 @@ import {PrimaryHeading, SecondaryHeading, Spacer} from '../global/Main';
 
 const Welcome = () => {
   const context = useContext(Context);
-  const {theme} = context;
-
+  const {loggedInUser, theme} = context;
+  const {email, isAnonymous} = loggedInUser;
   /**Note: For now this is just saying Welcome
    * Once I incorporate auth and track the logged in user
    * It will include a personalized welcome message
@@ -15,7 +15,9 @@ const Welcome = () => {
   return (
     <>
       <Spacer height={10} />
-      <PrimaryHeading theme={theme}>Welcome!</PrimaryHeading>
+      <PrimaryHeading theme={theme}>
+        Welcome, {isAnonymous ? 'Guest' : email}!
+      </PrimaryHeading>
       <SecondaryHeading theme={theme}>
         You're using Dave's News App
       </SecondaryHeading>

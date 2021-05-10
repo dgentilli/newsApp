@@ -30,11 +30,14 @@ const MyStuff = () => {
   const navigation = useNavigation();
   const context = useContext(Context);
   //console.log('MyStuff context: ', context);
-  const {loggedInUser, theme, toggleTheme} = context;
+  const {loggedInUser, theme, toggleTheme, setNickname} = context;
+  const {email, isAnonymous} = loggedInUser;
   return (
     <Container theme={theme}>
       <Spacer height={20} />
-      <PrimaryHeading theme={theme}>MyStuff Screen</PrimaryHeading>
+      <PrimaryHeading theme={theme}>
+        Hey there, {isAnonymous ? 'Guest' : email}
+      </PrimaryHeading>
       <Spacer height={30} />
       <Row>
         <CustomText theme={theme}>Theme Preferences</CustomText>
