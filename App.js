@@ -16,33 +16,20 @@ import {firebaseConfig} from './firebaseConfig';
 
 export const Context = React.createContext();
 
-const mockState = {
-  //Use a hard coded user until time to build auth
-  loggedInUser: {
-    id: 1327583,
-    email: 'homer@testmail.test',
-    nickname: 'Homer',
-  },
-  //loggedInUser: null,
-  theme: 'light', //default, but will eventually get this from the OS.
-  newsCategoryPreferences: ['us', 'world', 'science', 'arts', 'business'], //These are the default categories
-  isFirstLogin: false, //set this false until its time to work on the modal
-};
-
 const App = () => {
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   } else {
     firebase.app();
   }
-
+  const defaultTheme = 'light';
+  const defaultCategories = ['us', 'world', 'science', 'arts', 'business'];
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [hasAccount, setHasAccount] = useState(false);
-  const [theme, setTheme] = useState(mockState.theme);
+  const [theme, setTheme] = useState(defaultTheme);
   const [newsCategoryPreferences, setNewsCategoryPreferences] = useState(
-    mockState.newsCategoryPreferences,
+    defaultCategories,
   );
-  const [isFirstLogin, setIsFirstLogin] = useState(mockState.isFirstLogin);
   const colorScheme = Appearance.getColorScheme();
   const Tab = createBottomTabNavigator();
 
