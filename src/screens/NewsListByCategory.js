@@ -58,7 +58,7 @@ const NewsListByCategory = ({route}) => {
       <Spacer height={20} />
       <FlatList
         data={articleData}
-        keyExtractor={item => item.title}
+        keyExtractor={item => item.url}
         renderItem={({item}) => {
           return <NewsCardVertical data={item} />;
         }}
