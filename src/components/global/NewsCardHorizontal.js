@@ -23,10 +23,6 @@ const NewsCardHorizontal = ({data}) => {
     ? mediametadata
     : null;
   //console.log({imageUrl});
-  const titleDisplay =
-    title.length > 45 ? `${title.substring(0, 45)}...` : title;
-  const abstractDisplay =
-    abstract.length > 95 ? `${abstract.slice(0, 95)}...` : abstract;
 
   return (
     <HorizontalCardContainer onPress={() => Linking.openURL(url)}>
@@ -36,8 +32,12 @@ const NewsCardHorizontal = ({data}) => {
           uri: imageUrl,
         }}
       />
-      <Title theme={theme}>{titleDisplay}</Title>
-      <Abstract theme={theme}>{abstractDisplay}</Abstract>
+      <Title theme={theme} numberOfLines={2}>
+        {title}
+      </Title>
+      <Abstract theme={theme} numberOfLines={3}>
+        {abstract}
+      </Abstract>
     </HorizontalCardContainer>
   );
 };
