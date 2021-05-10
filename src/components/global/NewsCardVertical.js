@@ -33,12 +33,6 @@ const NewsCardVertical = ({data}) => {
   const {theme} = context;
   const {title, abstract, url, multimedia, byline} = data;
   const imageUrl = multimedia && multimedia[2].url;
-  const titleDisplay =
-    title && title.length > 55 ? `${title.substring(0, 55)}...` : title;
-  const abstractDisplay =
-    abstract && abstract.length > 105
-      ? `${abstract.slice(0, 105)}...`
-      : abstract;
 
   return (
     <CardVerticalContainer onPress={() => Linking.openURL(url)}>
@@ -49,9 +43,11 @@ const NewsCardVertical = ({data}) => {
         }}
       />
       <TextContainer>
-        <Title theme={theme}>{titleDisplay}</Title>
-        <Abstract theme={theme}>
-          {abstract && abstract.length > 0 ? abstractDisplay : byline}
+        <Title theme={theme} numberOfLines={2}>
+          {title}
+        </Title>
+        <Abstract theme={theme} numberOfLines={3}>
+          {abstract && abstract.length > 0 ? abstract : byline}
         </Abstract>
       </TextContainer>
     </CardVerticalContainer>
