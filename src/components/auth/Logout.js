@@ -27,19 +27,12 @@ const Logout = () => {
       .auth()
       .signOut()
       .then(() => {
-        setUserInfo(null);
         console.log('successful logout');
-        navigation.navigate('AuthFlow', {
-          theme,
-          setUserInfo,
-          signupUser,
-          hasAccount,
-          toggleLoginSignup,
-        });
+        navigation.navigate('AuthFlow');
       })
       .catch(error => {
         console.log({error});
-        setError(true);
+        //setError(true);
       });
   };
 

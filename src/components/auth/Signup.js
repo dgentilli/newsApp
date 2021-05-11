@@ -26,14 +26,15 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
-        var user = userCredential.user;
+        const user = userCredential.user;
         setUserMessage('Successful Signup!');
         signupUser();
-        //console.log({user});
+        userCredential.user.sendEmailVerification();
+        console.log({user});
       })
       .catch(error => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        const errorCode = error.code;
+        const errorMessage = error.message;
         setError(true);
         setUserMessage(errorMessage);
         setTimeout(() => {
@@ -84,7 +85,7 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
         onChangeText={text => setPassword(text)}
       />
       <Spacer height={10} />
-      <Button onPress={() => signupNewUser()}>
+      <Button onPress={signupNewUser}>
         <ButtonText>Sign up!</ButtonText>
       </Button>
       <Spacer height={30} />
