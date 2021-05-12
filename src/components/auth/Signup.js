@@ -19,6 +19,17 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
   const [password, setPassword] = useState('');
   const [userMessage, setUserMessage] = useState(null);
   const [error, setError] = useState(false);
+  const [successfulSignup, setSuccessfulSignup] = useState(false);
+
+  React.useEffect(() => {
+    return () => {
+      setUserMessage(null);
+      setEmail('');
+      setPassword('');
+      setError(false);
+      setSuccessfulSignup(false);
+    };
+  }, []);
 
   const signupNewUser = () => {
     //console.log('onButtonPress fired ************************');
@@ -27,10 +38,12 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
       .createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
         const user = userCredential.user;
-        setUserMessage('Successful Signup!');
-        signupUser();
+        setSuccessfulSignup(true);
+        //setUserMessage('Successful Signup!');
+        //signupUser();
         userCredential.user.sendEmailVerification();
-        console.log({user});
+        //console.log({user});
+        console.log('Successful Signup');
       })
       .catch(error => {
         const errorCode = error.code;
