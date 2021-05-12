@@ -50,7 +50,7 @@ const NewsScroll = ({title, isPopularStories}) => {
     fetchNews();
   }, []);
 
-  return articleData.length > 0 ? (
+  return articleData && articleData.length > 0 ? (
     <FlatList
       horizontal
       showsHorizontalScrollIndicator={false}
