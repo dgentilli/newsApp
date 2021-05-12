@@ -13,12 +13,22 @@ import {
 } from '../global/Main';
 import ErrorDisplay from '../global/ErrorDisplay';
 import AnonymousLogin from './AnonymousLogin';
+import PasswordReset from './PasswordReset';
 
 const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [userMessage, setUserMessage] = useState(null);
+
+  React.useEffect(() => {
+    return () => {
+      setUserMessage(null);
+      setEmail('');
+      setPassword('');
+      setError(false);
+    };
+  }, []);
 
   const loginExistingUser = () => {
     firebase
@@ -27,7 +37,8 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
       .then(userCredential => {
         // Signed in
         const user = userCredential.user;
-        setUserMessage('Successful Login!');
+        console.log('user from login', user);
+        console.log('Successful Login!');
         getUserInfo();
       })
       .catch(error => {
@@ -116,6 +127,8 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
       <Button onPress={toggleLoginSignup}>
         <ButtonText>Need To Sign Up?</ButtonText>
       </Button>
+      <Spacer height={30} />
+      <PasswordReset />
     </Container>
   );
 };
