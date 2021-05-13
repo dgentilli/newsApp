@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Appearance} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useColorScheme} from 'react-native';
@@ -32,28 +32,50 @@ const App = () => {
     defaultCategories,
   );
 
-  const storeData = async value => {
+  const storeNewsCatData = async value => {
     try {
       const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem('@storage_Key', jsonValue);
+      await AsyncStorage.setItem('@storage_Categories', jsonValue);
     } catch (e) {
-      // saving error
+      console.log('error setting/saving  storage data,', e);
     }
   };
 
-  React.useEffect(() => {
-    const getData = async () => {
+  const storeThemePref = async value => {
+    try {
+      await AsyncStorage.setItem('@storage_Theme', value);
+    } catch (e) {
+      console.log('error setting/saving theme preference data,', e);
+    }
+  };
+
+  useEffect(() => {
+    const getNewsCatData = async () => {
       console.log('get data runs');
       try {
-        const jsonValue = await AsyncStorage.getItem('@storage_Key');
-        console.log({jsonValue});
-        const parsedData = jsonValue != null ? JSON.parse(jsonValue) : null;
+        const jsonValue = await AsyncStorage.getItem('@storage_Categories');
+        //console.log({jsonValue});
+        const parsedData =
+          (await jsonValue) != null ? JSON.parse(jsonValue) : null;
         setNewsCategoryPreferences(parsedData ? parsedData : defaultCategories);
       } catch (e) {
-        // error reading value
+        console.log('error getting storage data,', e);
       }
     };
-    getData();
+    getNewsCatData();
+  }, []);
+
+  useEffect(() => {
+    const getThemePref = async () => {
+      try {
+        const value = await AsyncStorage.getItem('@storage_Theme');
+        //console.log({value});
+        value ? setTheme(value) : setTheme(defaultTheme);
+      } catch (e) {
+        console.log('error getting theme pref data,', e);
+      }
+    };
+    getThemePref();
   }, []);
 
   const colorScheme = Appearance.getColorScheme();
@@ -63,6 +85,7 @@ const App = () => {
 
   const toggleTheme = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
+    storeThemePref(theme);
   };
 
   const modifyNewsPreferences = category => {
@@ -74,7 +97,7 @@ const App = () => {
     } else {
       setNewsCategoryPreferences([...newsCategoryPreferences, category]);
     }
-    storeData(newsCategoryPreferences);
+    storeNewsCatData(newsCategoryPreferences);
   };
 
   const setUserInfo = userInfo => {
