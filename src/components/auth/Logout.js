@@ -20,7 +20,7 @@ const Logout = () => {
     theme,
   } = context;
 
-  console.log('from logout, loggedInUser', loggedInUser);
+  //console.log('from logout, loggedInUser', loggedInUser);
 
   const handleLogout = () => {
     firebase

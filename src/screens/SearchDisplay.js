@@ -15,8 +15,8 @@ const SearchDisplay = ({route}) => {
   const context = useContext(Context);
   const {theme} = context;
   const {articles} = route.params;
-  console.log({articles});
-  console.log({route});
+  //console.log({articles});
+  //console.log({route});
 
   if (!articles || articles.length < 1) {
     return (
