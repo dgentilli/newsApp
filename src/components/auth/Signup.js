@@ -74,8 +74,12 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
         setError={setError}
       />
       <Spacer height={30} />
-      <SecondaryHeading>Already Know You'll Love The App?</SecondaryHeading>
-      <SecondaryHeading>Sign Up With Email And Password!</SecondaryHeading>
+      <SecondaryHeading theme={theme}>
+        Already Know You'll Love The App?
+      </SecondaryHeading>
+      <SecondaryHeading theme={theme}>
+        Sign Up With Email And Password!
+      </SecondaryHeading>
       <Spacer height={10} />
       <FormInput
         height={50}
