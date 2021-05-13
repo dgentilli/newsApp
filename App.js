@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React, {useState} from 'react';
 import {Appearance} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -30,6 +31,31 @@ const App = () => {
   const [newsCategoryPreferences, setNewsCategoryPreferences] = useState(
     defaultCategories,
   );
+
+  const storeData = async value => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('@storage_Key', jsonValue);
+    } catch (e) {
+      // saving error
+    }
+  };
+
+  React.useEffect(() => {
+    const getData = async () => {
+      console.log('get data runs');
+      try {
+        const jsonValue = await AsyncStorage.getItem('@storage_Key');
+        console.log({jsonValue});
+        const parsedData = jsonValue != null ? JSON.parse(jsonValue) : null;
+        setNewsCategoryPreferences(parsedData ? parsedData : defaultCategories);
+      } catch (e) {
+        // error reading value
+      }
+    };
+    getData();
+  }, []);
+
   const colorScheme = Appearance.getColorScheme();
   const Tab = createBottomTabNavigator();
 
@@ -48,6 +74,7 @@ const App = () => {
     } else {
       setNewsCategoryPreferences([...newsCategoryPreferences, category]);
     }
+    storeData(newsCategoryPreferences);
   };
 
   const setUserInfo = userInfo => {
