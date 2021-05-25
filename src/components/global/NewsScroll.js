@@ -37,9 +37,6 @@ const NewsScroll = ({title, isPopularStories}) => {
         );
         //console.log('newsScroll response', response.data.results);
         setArticleData(response.data.results);
-        if (mounted) {
-          setIsLoading(false);
-        }
       } catch (error) {
         console.log({error});
         setError(true);
