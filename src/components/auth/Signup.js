@@ -19,7 +19,7 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
   const [password, setPassword] = useState('');
   const [userMessage, setUserMessage] = useState(null);
   const [error, setError] = useState(false);
-  const [successfulSignup, setSuccessfulSignup] = useState(false);
+  //const [successfulSignup, setSuccessfulSignup] = useState(false);
 
   React.useEffect(() => {
     return () => {
@@ -27,7 +27,7 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
       setEmail('');
       setPassword('');
       setError(false);
-      setSuccessfulSignup(false);
+      //setSuccessfulSignup(false);
     };
   }, []);
 
