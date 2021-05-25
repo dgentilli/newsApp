@@ -37,7 +37,9 @@ const NewsScroll = ({title, isPopularStories}) => {
         );
         //console.log('newsScroll response', response.data.results);
         setArticleData(response.data.results);
-        setIsLoading(false);
+        if (mounted) {
+          setIsLoading(false);
+        }
       } catch (error) {
         console.log({error});
         setError(true);
@@ -48,6 +50,7 @@ const NewsScroll = ({title, isPopularStories}) => {
       }
     };
     fetchNews();
+    return () => setIsLoading(false);
   }, []);
 
   return articleData && articleData.length > 0 ? (
@@ -64,7 +67,7 @@ const NewsScroll = ({title, isPopularStories}) => {
       }
       ListHeaderComponent={error ? <ErrorDisplay /> : null}
     />
-  ) : articleData.length === 0 && !isLoading ? (
+  ) : articleData && articleData.length === 0 && !isLoading ? (
     <Container theme={theme}>
       <Spacer height={10} />
       <SecondaryHeading theme={theme}>No Articles to Display</SecondaryHeading>
