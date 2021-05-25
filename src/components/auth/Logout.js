@@ -32,7 +32,7 @@ const Logout = () => {
       })
       .catch(error => {
         console.log({error});
-        //setError(true);
+        setError(true);
       });
   };
 
