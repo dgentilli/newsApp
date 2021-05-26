@@ -51,7 +51,6 @@ const App = () => {
 
   useEffect(() => {
     const getNewsCatData = async () => {
-      console.log('get data runs');
       try {
         const jsonValue = await AsyncStorage.getItem('@storage_Categories');
         //console.log({jsonValue});
@@ -69,7 +68,6 @@ const App = () => {
     const getThemePref = async () => {
       try {
         const value = await AsyncStorage.getItem('@storage_Theme');
-        //console.log({value});
         value ? setTheme(value) : setTheme(defaultTheme);
       } catch (e) {
         console.log('error getting theme pref data,', e);
@@ -89,7 +87,6 @@ const App = () => {
   };
 
   const modifyNewsPreferences = category => {
-    //console.log({category});
     if (newsCategoryPreferences.includes(category)) {
       setNewsCategoryPreferences([
         ...newsCategoryPreferences.filter(item => category !== item),
