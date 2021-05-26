@@ -38,7 +38,7 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
       .createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
         const user = userCredential.user;
-        setSuccessfulSignup(true);
+        //setSuccessfulSignup(true);
         //setUserMessage('Successful Signup!');
         //signupUser();
         userCredential.user.sendEmailVerification();
@@ -86,6 +86,7 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
         theme={theme}
         value={email}
         placeholder="Email"
+        placeholderTextColor={theme === 'dark' ? '#f8f9faff' : '#495057ff'}
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={text => setEmail(text)}
@@ -96,6 +97,7 @@ const Signup = ({theme, signupUser, setUserInfo, toggleLoginSignup}) => {
         theme={theme}
         value={password}
         placeholder="Password"
+        placeholderTextColor={theme === 'dark' ? '#f8f9faff' : '#495057ff'}
         secureTextEntry
         autoCapitalize="none"
         autoCorrect={false}

@@ -103,6 +103,7 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
         theme={theme}
         value={email}
         placeholder="Email"
+        placeholderTextColor={theme === 'dark' ? '#f8f9faff' : '#495057ff'}
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={text => setEmail(text)}
@@ -113,6 +114,7 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
         theme={theme}
         value={password}
         placeholder="Password"
+        placeholderTextColor={theme === 'dark' ? '#f8f9faff' : '#495057ff'}
         autoCapitalize="none"
         autoCorrect={false}
         secureTextEntry
