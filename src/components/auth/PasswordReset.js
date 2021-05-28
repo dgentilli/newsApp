@@ -19,7 +19,7 @@ const PasswordResetText = styled.Text`
   text-align: center;
 `;
 
-const PasswordReset = () => {
+const PasswordReset = ({theme}) => {
   const [displayEmailInput, setDisplayEmailInput] = useState(false);
   const [email, setEmail] = useState('');
   const [userMessage, setUserMessage] = useState('');
@@ -61,6 +61,7 @@ const PasswordReset = () => {
         autoCorrect={false}
         onChangeText={text => setEmail(text)}
         theme={theme}
+        placeholderTextColor={theme === 'dark' ? '#f8f9faff' : '#495057ff'}
         height={40}
       />
       <Spacer height={20} />

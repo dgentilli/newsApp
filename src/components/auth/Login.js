@@ -130,7 +130,7 @@ const Login = ({theme, setUserInfo, toggleLoginSignup}) => {
         <ButtonText>Need To Sign Up?</ButtonText>
       </Button>
       <Spacer height={30} />
-      <PasswordReset />
+      <PasswordReset theme={theme} />
     </Container>
   );
 };

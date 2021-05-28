@@ -123,6 +123,7 @@ const AdvancedSearch = () => {
           theme={theme}
           placeholder="Enter Search Terms"
           value={queryValue}
+          placeholderTextColor={theme === 'dark' ? '#f8f9faff' : '#495057ff'}
           onChangeText={input => setQueryValue(input)}
         />
         <Spacer height={20} />
@@ -138,6 +139,9 @@ const AdvancedSearch = () => {
               theme={theme}
               placeholder="Publication Year"
               value={pubYear}
+              placeholderTextColor={
+                theme === 'dark' ? '#f8f9faff' : '#495057ff'
+              }
               onChangeText={input => setPubYear(input)}
               keyboardType="numeric"
             />
@@ -150,6 +154,9 @@ const AdvancedSearch = () => {
               theme={theme}
               placeholder="Location"
               value={location}
+              placeholderTextColor={
+                theme === 'dark' ? '#f8f9faff' : '#495057ff'
+              }
               onChangeText={input => setLocation(input)}
             />
           </Row>
@@ -161,6 +168,9 @@ const AdvancedSearch = () => {
               theme={theme}
               placeholder="Source"
               value={source}
+              placeholderTextColor={
+                theme === 'dark' ? '#f8f9faff' : '#495057ff'
+              }
               onChangeText={input => setSource(input)}
             />
           </Row>
@@ -172,6 +182,9 @@ const AdvancedSearch = () => {
               theme={theme}
               placeholder="Headline"
               value={headline}
+              placeholderTextColor={
+                theme === 'dark' ? '#f8f9faff' : '#495057ff'
+              }
               onChangeText={input => setHeadline(input)}
             />
           </Row>
@@ -183,6 +196,9 @@ const AdvancedSearch = () => {
               theme={theme}
               placeholder="News Desk"
               value={newsDesk}
+              placeholderTextColor={
+                theme === 'dark' ? '#f8f9faff' : '#495057ff'
+              }
               onChangeText={input => setNewsDesk(input)}
             />
           </Row>
@@ -194,6 +210,9 @@ const AdvancedSearch = () => {
               theme={theme}
               placeholder="Headline"
               value={section}
+              placeholderTextColor={
+                theme === 'dark' ? '#f8f9faff' : '#495057ff'
+              }
               onChangeText={input => setSection(input)}
             />
           </Row>
